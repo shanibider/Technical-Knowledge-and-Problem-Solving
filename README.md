@@ -1,4 +1,574 @@
-# 🎯🏆 Technical Exercises and knowledge
+# 🎯 Technical Exercises and knowledge
+
+
+### 🏆 Technical Knowledge -
+
+
+# 🏆 React -
+
+## 🏆 Axios 
+Axios is a popular `JavaScript library` used for `making HTTP requests from both the browser and Node.js` environments. It provides a simple and intuitive API for performing asynchronous operations, such as fetching data from a remote server or posting data to an API endpoint.
+
+
+```javascript
+const axios = require('axios');
+
+// Making a POST request to an external API with data
+axios.post('https://api.example.com/posts', {
+    title: 'foo',
+    body: 'bar',
+    userId: 1
+  })
+  .then(response => {
+    console.log('Post created:', response.data);
+  })
+  .catch(error => {
+    console.error('Error creating post:', error);
+  });
+```
+
+```javascript
+// Making a POST request using Fetch API with data
+fetch('https://api.example.com/posts', {
+    method: 'POST',
+    body: JSON.stringify({
+      title: 'foo',
+      body: 'bar',
+      userId: 1
+    }),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Post created:', data);
+  })
+  .catch(error => {
+    console.error('Error creating post:', error);
+  });
+```
+
+
+
+## 🏆 AJAX
+Ajax stands for `Asynchronous JavaScript and XML`. It's a set of web development techniques used to create asynchronous web applications. With Ajax, `web pages can send and receive data from a server` asynchronously without interfering with the display and behavior of the existing page.
+
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ajax Example</title>
+</head>
+<body>
+  <div id="data-container">
+    <!-- Data will be displayed here -->
+  </div>
+  <button id="load-data">Load Data</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
+```
+
+
+
+```javascript
+document.getElementById('load-data').addEventListener('click', loadData);
+
+function loadData() {
+  // Make a GET request to a JSON API
+  fetch('https://jsonplaceholder.typicode.com/posts')
+    .then(response => {
+      // Check if response is OK (status code 200)
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      // Parse JSON data
+      return response.json();
+    })
+    .then(data => {
+      // Display data on the page
+      const dataContainer = document.getElementById('data-container');
+      dataContainer.innerHTML = '';
+      data.forEach(post => {
+        const postElement = document.createElement('div');
+        postElement.innerHTML = `<h3>${post.title}</h3><p>${post.body}</p>`;
+        dataContainer.appendChild(postElement);
+      });
+    })
+    .catch(error => {
+      // Handle errors
+      console.error('There was a problem fetching the data:', error);
+    });
+}
+```
+
+
+## Axios vs Fetch API 
+Both examples demonstrate making a `POST` request to an external API endpoint `(https://api.example.com/posts)` with data. The Axios example uses `Axios library`, while the Fetch API example utilizes the `built-in Fetch API`. They both handle the response and error in a similar way, showcasing the flexibility of both approaches in handling HTTP requests.
+
+```javascript
+const axios = require('axios');
+
+// Making a POST request to an external API with data
+axios.post('https://api.example.com/posts', {
+    title: 'foo',
+    body: 'bar',
+    userId: 1
+  })
+  .then(response => {
+    console.log('Post created:', response.data);
+  })
+  .catch(error => {
+    console.error('Error creating post:', error);
+  });
+```
+
+```javascript
+// Making a POST request using Fetch API with data
+fetch('https://api.example.com/posts', {
+    method: 'POST',
+    body: JSON.stringify({
+      title: 'foo',
+      body: 'bar',
+      userId: 1
+    }),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Post created:', data);
+  })
+  .catch(error => {
+    console.error('Error creating post:', error);
+  });
+```
+
+
+
+
+
+## 🏆 Context API 
+Provides a way to pass data through the component tree without having to pass props down manually at every level. It's commonly used for sharing global state or configuration settings between components.
+```javascript
+import React, { createContext, useContext, useState } from 'react';
+
+// Step 1: Create a context
+const ThemeContext = createContext();
+
+// Step 2: Create a provider component
+const ThemeProvider = ({ children }) => {
+  const [theme, setTheme] = useState('light');
+
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+
+// Step 3: Create a custom hook to consume the context
+const useTheme = () => {
+  return useContext(ThemeContext);
+};
+
+// Step 4: Use the provider in your app
+const App = () => {
+  return (
+    <ThemeProvider>
+      <Toolbar />
+    </ThemeProvider>
+  );
+};
+
+// Step 5: Use the custom hook to access the context in child components
+const Toolbar = () => {
+  const { theme, setTheme } = useTheme();
+
+  return (
+    <div>
+      <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+        Toggle Theme
+      </button>
+      <p>Current Theme: {theme}</p>
+    </div>
+  );
+};
+
+export default App;
+```
+
+In this example:
+- We create a context using createContext().
+- We create a provider component (ThemeProvider) to wrap the part of the component tree where we want to share the context.
+- We define a custom hook (useTheme) to consume the context.
+- We use the provider (ThemeProvider) in our app and wrap the Toolbar component with it.
+- Inside the Toolbar component, we use the custom hook (useTheme) to access the context values and update the theme state.
+
+
+
+
+
+
+
+## 🏆 Redux
+Redux is a predictable state container for JavaScript apps, most commonly used with React. It helps you manage the state of your application in a centralized store, making it easier to maintain and debug your application as it grows.
+
+### Example:
+```javascript
+// Step 1: Install Redux and React-Redux (for integrating Redux with React)
+// npm install redux react-redux
+
+// Step 2: Create Redux actions, reducers, and store
+
+// actions.js
+export const increment = () => {
+  return {
+    type: 'INCREMENT'
+  };
+};
+
+export const decrement = () => {
+  return {
+    type: 'DECREMENT'
+  };
+};
+
+// reducers.js
+const counterReducer = (state = { count: 0 }, action) => {
+  switch (action.type) {
+    case 'INCREMENT':
+      return { count: state.count + 1 };
+    case 'DECREMENT':
+      return { count: state.count - 1 };
+    default:
+      return state;
+  }
+};
+
+export default counterReducer;
+
+// store.js
+import { createStore } from 'redux';
+import counterReducer from './reducers';
+
+const store = createStore(counterReducer);
+
+export default store;
+
+// Step 3: Provide the Redux store to your React app
+
+// index.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import App from './App';
+import store from './store';
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
+
+// Step 4: Use Redux in your React components
+
+// App.js
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { increment, decrement } from './actions';
+
+const App = () => {
+  const count = useSelector(state => state.count);
+  const dispatch = useDispatch();
+
+  return (
+    <div>
+      <h1>Counter: {count}</h1>
+      <button onClick={() => dispatch(increment())}>Increment</button>
+      <button onClick={() => dispatch(decrement())}>Decrement</button>
+    </div>
+  );
+};
+
+export default App;
+```
+
+In this example:
+1. We define Redux actions (`increment` and `decrement`) in `actions.js`.
+2. We define a Redux reducer (`counterReducer`) in `reducers.js` to handle state updates.
+3. We create a Redux store in `store.js` using `createStore` from Redux, and pass the reducer to it.
+4. We provide the Redux store to our React app using the `Provider` component from `react-redux` in `index.js`.
+5. Inside our React components, we use hooks like `useSelector` and `useDispatch` from `react-redux` to access the Redux store and dispatch actions.
+6. In the `App` component, we display the current count from the Redux store and provide buttons to increment and decrement the count, which dispatch the corresponding actions.
+
+
+
+
+<br>
+
+---
+<br>
+
+
+
+
+
+## 🏆 Client-Server Architecture 
+- [ ] The `server-side` code processes `incoming requests` and `generates responses`,
+- [ ] while the `client-side` `sends requests to the server` and `updates the user interface based on the responses received`.
+
+1. **Server-Side:**
+   - [ ] Server `handles incoming requests from clients`, processes them, and returns responses.
+   - [ ] It will have endpoints or routes defined to handle specific types of requests, such as GET requests for retrieving data and POST requests for submitting data.
+   - [ ] In a web server environment, these endpoints are often implemented using server-side technologies like `Node.js`.
+   - [ ] The server-side code will include `logic to process incoming requests, interact with databases or other resources, and generate appropriate responses`.
+
+2. **Client-Side:**
+   - [ ] Client `interacts with users and sends requests to the server` to `fetch/pull or submit data`.
+   - [ ] It will include code to send HTTP requests, such as GET requests to retrieve data from the server or POST requests to submit data to the server.
+   - [ ] Written in JavaScript, which can use APIs like Fetch or XMLHttpRequest to send requests to the server.
+   - [ ] The client-side code `handle user interactions, send requests to the server, and update the user interface based on the server's responses`.
+
+
+## 🎯 Server and Client code for handling POST and GET requests:
+`Node.js server` handles `GET and POST` requests using `Express.js`, 
+and a `client-side` web page interacts with the server using `Fetch API` to `retrieve and submit data`.
+
+1. **Server-Side (Using Node.js with Express.js):**
+
+```javascript
+// Server-side code (app.js)
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const app = express();
+const PORT = 3000;
+
+app.use(bodyParser.json());// Middleware to parse JSON bodies
+
+// GET endpoint to retrieve data
+app.get('/api/data', (req, res) => {
+  // Assuming data is stored in a variable or fetched from a database
+  const data = { message: 'Hello from the server!' };
+  res.json(data);
+});
+
+// POST endpoint to submit data
+app.post('/api/submit', (req, res) => {
+  const { name, email } = req.body;
+  // Process the submitted data (e.g., save to a database)
+  console.log('Received data:', name, email);
+  res.sendStatus(200);
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+```
+
+2. **Client-Side (Using JavaScript in a web browser):**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client-Side Example</title>
+</head>
+<body>
+  <h1>Client-Side Example</h1>
+
+  <!-- Form for submitting data -->
+  <form id="submitForm">
+    <input type="text" name="name" placeholder="Name">
+    <input type="email" name="email" placeholder="Email">
+    <button type="submit">Submit</button>
+  </form>
+
+  <!-- Container for displaying data -->
+  <div id="dataContainer"></div>
+
+  <script>
+    // Function to send a GET request to retrieve data
+    function fetchData() {
+      fetch('/api/data')
+        .then(response => response.json())
+        .then(data => {
+          const dataContainer = document.getElementById('dataContainer');
+          dataContainer.innerHTML = `<p>${data.message}</p>`;
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    }
+
+    // Function to handle form submission and send a POST request
+    function submitData(event) {
+      event.preventDefault();
+      const formData = new FormData(event.target);
+      
+      fetch('/api/submit', {
+        method: 'POST',
+        body: formData
+      })
+        .then(() => {
+          console.log('Data submitted successfully');
+          // Optionally, fetch updated data after submission
+          fetchData();
+        })
+        .catch(error => console.error('Error submitting data:', error));
+    }
+
+    // Attach event listener to form submission
+    const submitForm = document.getElementById('submitForm');
+    submitForm.addEventListener('submit', submitData);
+
+    // Fetch initial data when the page loads
+    fetchData();
+  </script>
+</body>
+</html>
+```
+<br>
+
+
+
+
+
+
+
+## 🎯 Server Side: HTTP Requests and Responses:
+The process of an HTTP request and response cycle: 
+When a client sends an HTTP request to a server, it includes a request method (GET, POST, etc.), headers, and optional data.
+The server processes the request and generates an HTTP response, including a status code, headers, and optional data.
+The response is sent back to the client, indicating success or failure of the request.
+
+- [x] **GET Request:**
+   - Used to `request data from a server`, data is sent `in the URL`, typically used `for retrieving data`, data is visible in the URL.
+   - 
+```javascript     
+router.get("/", async (req, res) => {
+  let collection = await db.collection("records");
+  let results = await collection.find({}).toArray();
+  res.send(results).status(200);
+});
+```
+
+- [x] **POST Request:**
+   - Used to `submit data to a server`, `data is sent in the request body`, typically used `for submitting data`, data is not visible in the URL.
+
+```javascript
+router.post("/", async (req, res) => {
+  try {
+    let newDocument = {
+      name: req.body.name,
+      position: req.body.position,
+      level: req.body.level,
+    };
+    let collection = await db.collection("records");
+    let result = await collection.insertOne(newDocument);
+    res.send(result).status(204);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error adding record");
+  }
+});
+```
+
+## 🎯 Client Side: GET and POST requests using the Fetch API (JavaScript):
+
+- [ ] The `GET request retrieves data from a specified URL`, while the `POST request submits form data to a specified endpoint`.
+- [ ] `'https://api.example.com'` is the API endpoint you want to interact with.
+      
+1. **GET Request:**
+   - Example URL: `https://api.example.com/products?category=electronics`
+   - Purpose: Retrieve a list of electronics products from the server.
+   - Parameters: `category=electronics` is included in the URL query string to specify the category of products to retrieve.
+   - Usage: Used when fetching data from the server, such as retrieving information from a database or accessing a web page.
+
+```javascript
+// Example of a GET request using Fetch API
+fetch('https://api.example.com/products?category=electronics')
+  .then(response => {
+    return response.json();
+  })
+  .then(data => {
+    // Process the retrieved data
+    console.log('Products:', data);
+  })
+```
+
+2. **POST Request:**
+   - Example URL: `https://api.example.com/login`
+   - Purpose: Submit user credentials (username and password) to the server for authentication.
+   - Data Format: The username and password are sent in the request body as form data or JSON.
+   - Usage: Used when submitting sensitive information or performing actions that modify server state, such as submitting a login form, uploading a file, or creating a new resource on the server.
+
+```javascript
+// Example of a POST request using Fetch API
+const formData = new FormData();
+formData.append('username', 'exampleuser');
+formData.append('password', 'secretpassword');
+
+fetch('https://api.example.com/login', {
+  method: 'POST',
+  body: formData
+})
+  .then(response => {
+    return response.json();
+  })
+  .then(data => {
+    // Handle successful login response
+    console.log('Login successful:', data);
+  })
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+---
+<br>
 
 
 # 🏆 Logical Exercise (`Leetcode`) -
@@ -293,240 +863,6 @@ var mergeTwoLists = function(l1, l2) {
     }
 };
 ```
-
-
-
-
-
-
-
-
-
-
-<br>
----
-<br>
-
-
-
-# 🏆 Technical Knowledge
-
-
-
-## 🏆 Client-Server Architecture 
-- [ ] The `server-side` code processes `incoming requests` and `generates responses`,
-- [ ] while the `client-side` `sends requests to the server` and `updates the user interface based on the responses received`.
-
-1. **Server-Side:**
-   - [ ] Server `handles incoming requests from clients`, processes them, and returns responses.
-   - [ ] It will have endpoints or routes defined to handle specific types of requests, such as GET requests for retrieving data and POST requests for submitting data.
-   - [ ] In a web server environment, these endpoints are often implemented using server-side technologies like `Node.js`.
-   - [ ] The server-side code will include `logic to process incoming requests, interact with databases or other resources, and generate appropriate responses`.
-
-2. **Client-Side:**
-   - [ ] Client `interacts with users and sends requests to the server` to `fetch/pull or submit data`.
-   - [ ] It will include code to send HTTP requests, such as GET requests to retrieve data from the server or POST requests to submit data to the server.
-   - [ ] Written in JavaScript, which can use APIs like Fetch or XMLHttpRequest to send requests to the server.
-   - [ ] The client-side code `handle user interactions, send requests to the server, and update the user interface based on the server's responses`.
-
-
-## 🎯 Server and Client code for handling POST and GET requests:
-`Node.js server` handles `GET and POST` requests using `Express.js`, 
-and a `client-side` web page interacts with the server using `Fetch API` to `retrieve and submit data`.
-
-1. **Server-Side (Using Node.js with Express.js):**
-
-```javascript
-// Server-side code (app.js)
-const express = require('express');
-const bodyParser = require('body-parser');
-
-const app = express();
-const PORT = 3000;
-
-app.use(bodyParser.json());// Middleware to parse JSON bodies
-
-// GET endpoint to retrieve data
-app.get('/api/data', (req, res) => {
-  // Assuming data is stored in a variable or fetched from a database
-  const data = { message: 'Hello from the server!' };
-  res.json(data);
-});
-
-// POST endpoint to submit data
-app.post('/api/submit', (req, res) => {
-  const { name, email } = req.body;
-  // Process the submitted data (e.g., save to a database)
-  console.log('Received data:', name, email);
-  res.sendStatus(200);
-});
-
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
-```
-
-2. **Client-Side (Using JavaScript in a web browser):**
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Client-Side Example</title>
-</head>
-<body>
-  <h1>Client-Side Example</h1>
-
-  <!-- Form for submitting data -->
-  <form id="submitForm">
-    <input type="text" name="name" placeholder="Name">
-    <input type="email" name="email" placeholder="Email">
-    <button type="submit">Submit</button>
-  </form>
-
-  <!-- Container for displaying data -->
-  <div id="dataContainer"></div>
-
-  <script>
-    // Function to send a GET request to retrieve data
-    function fetchData() {
-      fetch('/api/data')
-        .then(response => response.json())
-        .then(data => {
-          const dataContainer = document.getElementById('dataContainer');
-          dataContainer.innerHTML = `<p>${data.message}</p>`;
-        })
-        .catch(error => console.error('Error fetching data:', error));
-    }
-
-    // Function to handle form submission and send a POST request
-    function submitData(event) {
-      event.preventDefault();
-      const formData = new FormData(event.target);
-      
-      fetch('/api/submit', {
-        method: 'POST',
-        body: formData
-      })
-        .then(() => {
-          console.log('Data submitted successfully');
-          // Optionally, fetch updated data after submission
-          fetchData();
-        })
-        .catch(error => console.error('Error submitting data:', error));
-    }
-
-    // Attach event listener to form submission
-    const submitForm = document.getElementById('submitForm');
-    submitForm.addEventListener('submit', submitData);
-
-    // Fetch initial data when the page loads
-    fetchData();
-  </script>
-</body>
-</html>
-```
-<br>
-
-
-
-
-
-
-
-## 🎯 Server Side: HTTP Requests and Responses:
-The process of an HTTP request and response cycle: 
-When a client sends an HTTP request to a server, it includes a request method (GET, POST, etc.), headers, and optional data.
-The server processes the request and generates an HTTP response, including a status code, headers, and optional data.
-The response is sent back to the client, indicating success or failure of the request.
-
-- [x] **GET Request:**
-   - Used to `request data from a server`, data is sent `in the URL`, typically used `for retrieving data`, data is visible in the URL.
-   - 
-```javascript     
-router.get("/", async (req, res) => {
-  let collection = await db.collection("records");
-  let results = await collection.find({}).toArray();
-  res.send(results).status(200);
-});
-```
-
-- [x] **POST Request:**
-   - Used to `submit data to a server`, `data is sent in the request body`, typically used `for submitting data`, data is not visible in the URL.
-
-```javascript
-router.post("/", async (req, res) => {
-  try {
-    let newDocument = {
-      name: req.body.name,
-      position: req.body.position,
-      level: req.body.level,
-    };
-    let collection = await db.collection("records");
-    let result = await collection.insertOne(newDocument);
-    res.send(result).status(204);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Error adding record");
-  }
-});
-```
-
-## 🎯 Client Side: GET and POST requests using the Fetch API (JavaScript):
-
-- [ ] The `GET request retrieves data from a specified URL`, while the `POST request submits form data to a specified endpoint`.
-- [ ] `'https://api.example.com'` is the API endpoint you want to interact with.
-      
-1. **GET Request:**
-   - Example URL: `https://api.example.com/products?category=electronics`
-   - Purpose: Retrieve a list of electronics products from the server.
-   - Parameters: `category=electronics` is included in the URL query string to specify the category of products to retrieve.
-   - Usage: Used when fetching data from the server, such as retrieving information from a database or accessing a web page.
-
-```javascript
-// Example of a GET request using Fetch API
-fetch('https://api.example.com/products?category=electronics')
-  .then(response => {
-    return response.json();
-  })
-  .then(data => {
-    // Process the retrieved data
-    console.log('Products:', data);
-  })
-```
-
-2. **POST Request:**
-   - Example URL: `https://api.example.com/login`
-   - Purpose: Submit user credentials (username and password) to the server for authentication.
-   - Data Format: The username and password are sent in the request body as form data or JSON.
-   - Usage: Used when submitting sensitive information or performing actions that modify server state, such as submitting a login form, uploading a file, or creating a new resource on the server.
-
-```javascript
-// Example of a POST request using Fetch API
-const formData = new FormData();
-formData.append('username', 'exampleuser');
-formData.append('password', 'secretpassword');
-
-fetch('https://api.example.com/login', {
-  method: 'POST',
-  body: formData
-})
-  .then(response => {
-    return response.json();
-  })
-  .then(data => {
-    // Handle successful login response
-    console.log('Login successful:', data);
-  })
-```
-
-
-
-
-
 
 
 
