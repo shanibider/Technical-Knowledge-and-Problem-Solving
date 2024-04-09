@@ -311,80 +311,9 @@ var mergeTwoLists = function(l1, l2) {
 
 # 🏆 Technical Knowledge
 
-## **HTTP Requests and Responses:**
-The process of an HTTP request and response cycle: 
-When a client sends an HTTP request to a server, it includes a request method (GET, POST, etc.), headers, and optional data.
-The server processes the request and generates an HTTP response, including a status code, headers, and optional data.
-The response is sent back to the client, indicating success or failure of the request.
-
-- [x] **GET Request:**
-   - Used to `request data from a server`, data is sent `in the URL`, typically used `for retrieving data`, data is visible in the URL.
-
-- [x] **POST Request:**
-   - Used to `submit data to a server`, `data is sent in the request body`, typically used `for submitting data`, data is not visible in the URL.
-
-
-#### How to make GET and POST requests using the Fetch API in JavaScript. 
-
-- [ ] The `GET request retrieves data from a specified URL`, while the `POST request submits form data to a specified endpoint`.
-- [ ] `'https://api.example.com'` is the API endpoint you want to interact with.
-      
-1. **GET Request:**
-   - Example URL: `https://api.example.com/products?category=electronics`
-   - Purpose: Retrieve a list of electronics products from the server.
-   - Parameters: `category=electronics` is included in the URL query string to specify the category of products to retrieve.
-   - Usage: Used when fetching data from the server, such as retrieving information from a database or accessing a web page.
-
-```javascript
-// Example of a GET request using Fetch API
-fetch('https://api.example.com/products?category=electronics')
-  .then(response => {
-    return response.json();
-  })
-  .then(data => {
-    // Process the retrieved data
-    console.log('Products:', data);
-  })
-```
-
-2. **POST Request:**
-   - Example URL: `https://api.example.com/login`
-   - Purpose: Submit user credentials (username and password) to the server for authentication.
-   - Data Format: The username and password are sent in the request body as form data or JSON.
-   - Usage: Used when submitting sensitive information or performing actions that modify server state, such as submitting a login form, uploading a file, or creating a new resource on the server.
-
-```javascript
-// Example of a POST request using Fetch API
-const formData = new FormData();
-formData.append('username', 'exampleuser');
-formData.append('password', 'secretpassword');
-
-fetch('https://api.example.com/login', {
-  method: 'POST',
-  body: formData
-})
-  .then(response => {
-    return response.json();
-  })
-  .then(data => {
-    // Handle successful login response
-    console.log('Login successful:', data);
-  })
-```
-
-
-
-
-## **Technical Concepts:**
-   - **HTML vs. XHTML:** HTML (Hypertext Markup Language) and XHTML (Extensible Hypertext Markup Language) are both markup languages used to structure content on web pages. XHTML is a stricter and more XML-based version of HTML. It requires well-formed syntax and uses XML rules, while HTML has more lenient syntax rules.
-   - **CSS Specificity:** CSS specificity determines which CSS rule is applied to an element when multiple rules conflict. Specificity is based on selectors' complexity and order, where inline styles have the highest specificity, followed by IDs, classes, and elements.
-   - **DOM (Document Object Model):** The DOM is a programming interface for web documents. It represents the structure of HTML/XML documents as a tree-like structure, with each node representing an element, attribute, or piece of text. JavaScript interacts with the DOM to dynamically update content and styles on web pages.
-
-
 
 
 ## 🏆 Client-Server Architecture 
-- [ ] Both the server-side and client-side have implementations for handling `both POST and GET requests`.
 - [ ] The `server-side` code processes `incoming requests` and `generates responses`,
 - [ ] while the `client-side` `sends requests to the server` and `updates the user interface based on the responses received`.
 
@@ -401,8 +330,9 @@ fetch('https://api.example.com/login', {
    - [ ] The client-side code `handle user interactions, send requests to the server, and update the user interface based on the server's responses`.
 
 
-## Server-side and Client-side code for handling POST and GET requests:
-Node.js server handles GET and POST requests using Express.js, and a client-side web page interacts with the server using Fetch API to retrieve and submit data
+## 🎯 Server and Client code for handling POST and GET requests:
+`Node.js server` handles `GET and POST` requests using `Express.js`, 
+and a `client-side` web page interacts with the server using `Fetch API` to `retrieve and submit data`.
 
 1. **Server-Side (Using Node.js with Express.js):**
 
@@ -499,6 +429,103 @@ app.listen(PORT, () => {
 </body>
 </html>
 ```
+<br>
+
+
+
+
+
+
+
+## 🎯 Server Side: HTTP Requests and Responses:
+The process of an HTTP request and response cycle: 
+When a client sends an HTTP request to a server, it includes a request method (GET, POST, etc.), headers, and optional data.
+The server processes the request and generates an HTTP response, including a status code, headers, and optional data.
+The response is sent back to the client, indicating success or failure of the request.
+
+- [x] **GET Request:**
+   - Used to `request data from a server`, data is sent `in the URL`, typically used `for retrieving data`, data is visible in the URL.
+   - 
+```javascript     
+router.get("/", async (req, res) => {
+  let collection = await db.collection("records");
+  let results = await collection.find({}).toArray();
+  res.send(results).status(200);
+});
+```
+
+- [x] **POST Request:**
+   - Used to `submit data to a server`, `data is sent in the request body`, typically used `for submitting data`, data is not visible in the URL.
+
+```javascript
+router.post("/", async (req, res) => {
+  try {
+    let newDocument = {
+      name: req.body.name,
+      position: req.body.position,
+      level: req.body.level,
+    };
+    let collection = await db.collection("records");
+    let result = await collection.insertOne(newDocument);
+    res.send(result).status(204);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error adding record");
+  }
+});
+```
+
+## 🎯 Client Side: GET and POST requests using the Fetch API (JavaScript):
+
+- [ ] The `GET request retrieves data from a specified URL`, while the `POST request submits form data to a specified endpoint`.
+- [ ] `'https://api.example.com'` is the API endpoint you want to interact with.
+      
+1. **GET Request:**
+   - Example URL: `https://api.example.com/products?category=electronics`
+   - Purpose: Retrieve a list of electronics products from the server.
+   - Parameters: `category=electronics` is included in the URL query string to specify the category of products to retrieve.
+   - Usage: Used when fetching data from the server, such as retrieving information from a database or accessing a web page.
+
+```javascript
+// Example of a GET request using Fetch API
+fetch('https://api.example.com/products?category=electronics')
+  .then(response => {
+    return response.json();
+  })
+  .then(data => {
+    // Process the retrieved data
+    console.log('Products:', data);
+  })
+```
+
+2. **POST Request:**
+   - Example URL: `https://api.example.com/login`
+   - Purpose: Submit user credentials (username and password) to the server for authentication.
+   - Data Format: The username and password are sent in the request body as form data or JSON.
+   - Usage: Used when submitting sensitive information or performing actions that modify server state, such as submitting a login form, uploading a file, or creating a new resource on the server.
+
+```javascript
+// Example of a POST request using Fetch API
+const formData = new FormData();
+formData.append('username', 'exampleuser');
+formData.append('password', 'secretpassword');
+
+fetch('https://api.example.com/login', {
+  method: 'POST',
+  body: formData
+})
+  .then(response => {
+    return response.json();
+  })
+  .then(data => {
+    // Handle successful login response
+    console.log('Login successful:', data);
+  })
+```
+
+
+
+
 
 
 
