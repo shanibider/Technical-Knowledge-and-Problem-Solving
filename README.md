@@ -879,3 +879,252 @@ In the case of the `reverseList` function, once the base case is reached (i.e., 
 
 In the context of reversing a linked list, backtracking involves returning from each recursive call, reversing the links between nodes, and eventually constructing the reversed list step by step.
 
+
+
+
+
+
+
+
+
+
+---
+<br>
+
+
+# 🏆 Javascript Practice:
+
+// https://www.jschallenger.com/javascript-practice/
+
+```javascript
+// There's another way to create functions which is called function expression.
+// Here, we create a function and assign it to the variable logMessage.
+// Notice that we omit the name of the function after the function keyword.
+function logMessageOne() {
+    console.log('How are you?');
+  }
+   
+  const logMessageTwo = function() {
+    console.log('Great, thanks!');
+  }   
+  logMessageOne();   
+  logMessageTwo();
+
+
+
+
+// Write a function that takes a string (a) and a number (n) as argument.
+// Return the nth character of 'a'.
+function myFunction(a, n){
+    return a.charAt(n - 1);
+}
+console.log(myFunction('abcd',1));
+
+
+
+// Write a function that takes a string (a) as argument.
+// Remove the first 3 characters of a. Return the result
+function myFunction(a){
+    return a.slice(3);
+}
+console.log(myFunction('1234'));
+
+
+
+// Write a function that takes a string as argument. Extract the last 3 characters from the string. Return the result
+function myFunction(a) {
+    return a.slice(-3);
+}
+console.log(myFunction('abcdefgh')); // Output: 'fgh'
+
+
+
+// Write a function that takes a string (a) as argument. Get the first 3 characters of a. Return the result
+function myFunction(a) {
+    return a.slice(0, 3);
+}
+console.log(myFunction('abcdefgh')); // Output: 'abc'
+
+
+
+// Write a function that takes a string as argument. The string contains the substring 'is'. Return the index of 'is'.
+function findIndexOfIs(a) {
+    return a.indexOf('is');
+}
+console.log(findIndexOfIs('This is a sample string.')); // Output: 2
+
+
+// Write a function that extract the first half a. 
+function extractFirstHalf(a) {
+    const halfLength = Math.ceil(a.length / 2); //rounds a number up
+    return a.slice(0, halfLength);
+}
+
+console.log(extractFirstHalf('abcdefgh')); // Output: 'abcd'
+
+
+
+// Remove the last 3 characters of a. Return the result.
+function removeLastThreeCharacters(a) {
+    return a.slice(0, -3);
+}
+console.log(removeLastThreeCharacters('abcdefgh')); // Output: 'abc'
+
+
+
+// Return b percent of a
+function percentage(a, b) {
+    return (b / 100) * a;
+}
+console.log(percentage(100, 50)); // Output: 50
+
+
+
+// Sum a and b. Then substract by c. Then multiply by d and divide by e.
+// Finally raise to the power of f and return the result.
+function complexCalculation(a, b, c, d, e, f) {
+    let result = a + b;
+    result -= c;
+    result *= d;
+    result /= e;
+    result = Math.pow(result, f);     // Raise to the power of f
+    return result;
+
+   // return (((a + b - c) * d) / e) ** f;
+}
+const a = 5, b = 10, c = 3, d = 2, e = 4, f = 2;
+const result = complexCalculation(a, b, c, d, e, f);
+console.log(result);
+
+
+
+
+// If a contains b, append b to the beginning of a.
+// If not, append it to the end.
+function appendBasedOnContainment(a, b) {
+    if (a.includes(b)) {
+        return b + a;  // Append b to the beginning of a
+    } else {
+        return a + b;  // Append b to the end of a
+    }
+}
+const x = 'hello', y = 'world';
+const result2 = appendBasedOnContainment(x, y);
+console.log(result);
+
+
+
+
+//  If the number is even, return true. Otherwise, return false
+function isEven(n) {
+    return n % 2 === 0;
+}
+console.log(isEven(10));
+
+
+
+
+
+// Return the number of times a occurs in b.
+function countOccurrences(a, b) {
+    // a regular expression with the 'g' flag is used to find all occurrences of a in b. 
+    const regex = new RegExp(a, 'g');
+    const matches = b.match(regex);
+
+    // Return the count of occurrences
+    return matches ? matches.length : 0;
+}
+const w = 'ab', z = 'abababcab';
+const occurrences = countOccurrences(w,z);
+console.log(occurrences);  // Output: 4
+
+/*
+Regular expressions:
+1. Literal Characters:
+   - Regular expressions can match literal characters. For example, `/hello/` will match the word "hello" in a text.
+
+2. Metacharacters:
+   - `.` (dot): Matches any single character. `/a.b/` will match "aab", "axb", etc.
+   - `*`: Matches 0 or more occurrences of the preceding character. `/ab*c/` will match "ac", "abc", "abbc", etc.
+   - `+`: Matches 1 or more occurrences of the preceding character. `/ab+c/` will match "abc", "abbc", "abbbc", etc.
+   - `?`: Matches 0 or 1 occurrence of the preceding character. `/ab?c/` will match "ac" and "abc".
+   - `^`: Anchors the regex at the beginning of the string. `/^abc/` will match "abc" only if it's at the beginning.
+   - `$`: Anchors the regex at the end of the string. `/abc$/` will match "abc" only if it's at the end.
+
+3. Character Classes:
+   - Square brackets `[ ]` define a character class. `/[aeiou]/` will match any vowel.
+   - Ranges can be used. `/[0-9]/` will match any digit.
+
+4. Quantifiers:
+   - Specify the number of occurrences. `/a{2,4}/` matches 2 to 4 consecutive 'a' characters.
+
+5. Groups:
+   - Parentheses `( )` create groups. `/(\d{3})-\d{3}-\d{4}/` matches a phone number pattern like "555-123-4567" and captures the area code (the digits within the parentheses).
+
+6. Escape Character:
+   - The backslash `\` is used to match a literal metacharacter. `/a\*b/` matches "a*b".
+
+
+Now, let's revisit the examples with simpler explanations:
+const text = 'The quick brown fox jumps over the lazy dog';
+
+// Example 1: Matching the word 'quick'
+const wordRegex = /quick/;
+console.log(text.match(wordRegex));  // Output: [ 'quick' ]
+
+// Example 2: Matching any digit
+const digitRegex = /\d/;
+console.log(text.match(digitRegex));  // Output: null (no digit found)
+
+// Example 3: Matching words starting with 'b'
+const startsWithBRegex = /\bb\w+/g;
+console.log(text.match(startsWithBRegex));  // Output: [ 'brown' ]
+
+// Example 4: Matching a phone number pattern and capturing the area code
+const phoneRegex = /(\d{3})-\d{3}-\d{4}/;
+const phoneNumber = '555-123-4567';
+console.log(phoneNumber.match(phoneRegex));  // Output: [ '555-123-4567', '555' ]
+*/
+
+
+
+
+//If a is a whole number (has no decimal place), return true. Otherwise, return false.
+function isWholeNumber(a) {
+    return Number.isInteger(a);
+    // return a - Math.floor(a) === 0
+}
+console.log(isWholeNumber(5));     // Output: true
+console.log(isWholeNumber(7.42));  // Output: false
+
+
+
+
+// Write a function that takes two numbers (a and b) as arguments.
+// If a is smaller than b, divide a by b. Otherwise, multiply both numbers. Return the resulting value
+function dividedOrMultiply(a,b){
+   return a < b ? a/b : a*b;
+}
+
+
+
+//Round a to the 2nd digit after the decimal point. 
+function roundToTwoDecimalPlaces(a) {
+    return Math.round(a * 100) / 100;
+}
+
+//Split a into its individual digits and return them in an array.
+function splitIntoDigits(a) {
+    const string = a + '';  // Convert to string (This method effectively converts the number a into a string)
+    const strings = string.split(''); // Split into individual characters
+    return strings.map(digit => Number(digit))    // Convert each character back to a number
+    // return Array.from(String(a), Number);
+}
+```
+
+
+
+
+
+
+
