@@ -3,7 +3,6 @@
 
 ### 🏆 Technical Knowledge -
 
-
 # 🏆 React -
 
 ## 🏆 Axios 
@@ -876,6 +875,45 @@ var mergeTwoLists = function(l1, l2) {
 
 
 
+# 🏆 How-to Approach LeetCode Challengaes:
+
+1. **Problem Classification:**
+   - Categorize the problem based on its characteristics, such as: 
+     - `array manipulation, string manipulation, dynamic programming, graph algorithms, etc`. Knowing the category of the problem can guide you towards suitable approaches and algorithms commonly used for that category.
+
+2. **Brainstorm Solutions + Choose an Approach:**
+   - Think about different approaches or algorithms that could solve the problem. Consider whether any known techniques or data structures could be useful.
+   - Based on your brainstorming and understanding of the problem, select an approach that seems most suitable. Consider factors such as simplicity, efficiency, and ease of implementation.
+
+
+3. **Use Known Algorithms and Techniques:**
+   - Leverage your knowledge of common algorithms and data structures. For example, if the problem involves searching, consider binary search for sorted arrays. If it involves dynamic programming, think about ways to break down the problem into smaller subproblems.
+
+4. **Review Similar Problems:**
+   - Search for similar problems on LeetCode that can give you insights into effective approaches and techniques that can be applied to the current problem.
+
+5. **Follow Problem-Solving Patterns:**
+   - Familiarize yourself with `common problem-solving patterns and techniques`, such as `two-pointer technique`, `sliding window`, `backtracking`, `divide and conquer`, etc. Recognizing patterns in the problem statement can help you choose appropriate strategies.
+
+6. **Draw Diagrams and Visualize:**
+   - Sometimes, drawing diagrams or visualizing the problem can help you understand its structure and relationships better. For example, for graph problems, drawing the graph can make it easier to identify paths, cycles, or connectivity.
+
+
+7. **Break Down the Problem:**
+   - If the problem seems complex, try breaking it down into smaller subproblems. Solve each subproblem individually and then combine the solutions to solve the main problem. 
+
+8. **Write Pseudocode:**
+   - Before writing actual code, outline the steps of your chosen approach in pseudocode. This helps clarify your thought process and serves as a roadmap for implementing the solution.
+
+<br>
+
+---
+<br>
+
+
+
+
+
 # 🏆 Data Structure:
 Used to organize and manipulate data efficiently, allowing for optimal storage, retrieval, and manipulation of information.
 
@@ -1486,6 +1524,12 @@ function splitIntoDigits(a) {
 ```
 
 
+# Assets:
+
+![Binary Search](https://github.com/shanibider/Technical-interview/assets/72359805/fb298150-c380-4de8-877a-a9deb0e9c253)
+
+
+![Invert Binary Tree](https://github.com/shanibider/Technical-interview/assets/72359805/77478df2-93cb-4696-a127-bbca3109db0d)
 
 
 
