@@ -1,6 +1,5 @@
-# JavaScript Basics 🏆:
 
-
+# JavaScript Basics:
 ```javascript
 document.querySelector("html").addEventListener("click", function () {
   alert("Ouch! Stop poking me!");
@@ -8,7 +7,7 @@ document.querySelector("html").addEventListener("click", function () {
 ```
 
 
-# JavaScript objects
+### JavaScript objects
 ```javascript
 const person = {};
 
@@ -39,7 +38,7 @@ const person = {
 ```
 
 
-# JavaScript strings:
+# 🚀 JavaScript strings:
 
 Strings are a fundamental data type in JavaScript used to represent text. They are sequences of characters enclosed within single quotes (`'`) or double quotes (`"`). 
 Strings are a versatile and essential part of JavaScript, used extensively in web development for tasks such as user input validation, dynamic content generation, and manipulation of text-based data. Understanding string manipulation techniques is crucial for writing efficient and readable JavaScript code.
@@ -64,7 +63,7 @@ Strings are a versatile and essential part of JavaScript, used extensively in we
    - `indexOf(substring)`: Returns the index of the first occurrence of the specified substring.
    - `substring(startIndex, endIndex)`: Returns a new string containing characters from `startIndex` to `endIndex` (excluding `endIndex`).
    - `slice(startIndex, endIndex)`: Similar to `substring()`, but allows negative indices.
-   - `concat(str1, str2, ...)`: Concatenates two or more strings.
+   - `concat(str1, str2, ...)`: Concatenates (שרשור) two or more strings.
    - `split(separator)`: Splits the string into an array of substrings based on the specified separator.
    - `replace(oldValue, newValue)`: Replaces occurrences of `oldValue` with `newValue` in the string.
    - `trim()`: Removes whitespace from both ends of the string.
@@ -109,6 +108,7 @@ Strings are a versatile and essential part of JavaScript, used extensively in we
    console.log(greeting.toLowerCase()); // Output: hello, world!
    ```
 
+
 2. **String Interpolation**:
    ```javascript
    let name = 'Alice';
@@ -117,8 +117,10 @@ Strings are a versatile and essential part of JavaScript, used extensively in we
    console.log(message); // Output: Hello, my name is Alice and I am 30 years old.
    ```
 
+   
+
 3. **String Manipulation Methods**:
-   ```javascript
+  ```javascript
    let text = '  JavaScript is awesome!  ';
 
    // Trim whitespace
@@ -145,7 +147,6 @@ Strings are a versatile and essential part of JavaScript, used extensively in we
    console.log(strCopy);
    // Expected output: Array ["The quick brown fox jumps over the lazy dog."]
 
-
    // join
    // join() method of Array instances creates and returns a new string by concatenating all of the elements in this array, separated by commas or a specified separator string.
    const elements = ['Fire', 'Air', 'Water'];
@@ -158,13 +159,38 @@ Strings are a versatile and essential part of JavaScript, used extensively in we
    console.log(elements.join('-'));
    // Expected output: "Fire-Air-Water"
 
+   // concat  
+  const str1 = 'Hello';
+  const str2 = 'World';
+  console.log(str1.concat(' ', str2)); // "Hello World"
+  console.log(str2.concat(', ', str1)); // "World, Hello"
+
+  // another concat example
+  const greetList = ["Hello", " ", "Venkat", "!"];
+  // The concat() method is called on an empty string "". This method is used to concatenate one or more strings together.  
+  // The spread operator ... effectively spreads the elements of the greetList array as individual arguments to the concat() method.
+  // So, effectively, `concat(...greetList)` is equivalent to `concat("Hello", " ", "Venkat", "!")`.
+  "".concat(...greetList); // "Hello Venkat!"    // concat() is called on an empty string ""
+  
 
 
+  const greetList = ["Hello", " ", "Venkat", "!"];
+  "".concat(...greetList); // "Hello Venkat!"
 
+  // concat() method is called on an empty string "" to combine 2 strings together
+
+  // `The spread operator ...` spreads the elements of the greetList array as individual arguments. 
+  // `...greetList` // "Hello", " ", "Venkat", "!"
    
-   ```
+  // `concat(...greetList)` is equivalent to `concat("Hello", " ", "Venkat", "!")`.
+  // When concat() is called with these arguments, it concatenates them together into a single string.
+ 
+  ```
+  
 
-4. **Checking for Substrings**:
+
+
+5. **Checking for Substrings:**
    ```javascript
    let sentence = 'JavaScript is a powerful programming language.';
    let keyword = 'JavaScript';
@@ -177,7 +203,7 @@ Strings are a versatile and essential part of JavaScript, used extensively in we
    console.log(sentence.endsWith('language')); // Output: true
    ```
 
-5. **Unicode Support**:
+6. **Unicode Support**:
    ```javascript
    let emoji = '😊';
    console.log(emoji); // Output: 😊
@@ -186,7 +212,7 @@ Strings are a versatile and essential part of JavaScript, used extensively in we
    console.log(emoji.codePointAt(0).toString(16)); // Output: 1f60a
    ```
 
-6. **Multiline Strings** (using template literals):
+7. **Multiline Strings** (using template literals):
    ```javascript
    let multilineString = `
    This is a multiline string.
@@ -195,7 +221,7 @@ Strings are a versatile and essential part of JavaScript, used extensively in we
    console.log(multilineString);
    ```
 
-7. **Reversing a String**:
+8. **Reversing a String**:
    ```javascript
    function reverseString(str) {
      return str.split('').reverse().join('');
@@ -205,7 +231,7 @@ Strings are a versatile and essential part of JavaScript, used extensively in we
    console.log(reversed); // Output: olleh
    ```
 
-8. **Generating Random Strings**:
+9. **Generating Random Strings**:
    ```javascript
    function generateRandomString(length) {
      let result = '';
@@ -222,7 +248,7 @@ Strings are a versatile and essential part of JavaScript, used extensively in we
 
 
 
-9. **Common way to convert non-string values into strings**
+10. **Common way to convert non-string values into strings**
 
 function splitIntoDigits(a) {
     const string = a + '';  // Convert to string (This method effectively converts the number a into a string)
@@ -240,12 +266,15 @@ function splitIntoDigits(a) {
 
 
 
-# Javascript arrays:
-```javascipt
+# 🚀 Javascript arrays:
+
+```javascript
 const array1 = ['one', 'two', 'three'];
 console.log('array1:', array1);
 // Expected output: "array1:" Array ["one", "two", "three"]
 
+// reverse -
+// reverse()
 const reversed = array1.reverse();
 console.log('reversed:', reversed);
 // Expected output: "reversed:" Array ["three", "two", "one"]
@@ -255,11 +284,126 @@ console.log('array1:', array1);
 // Expected output: "array1:" Array ["three", "two", "one"]
 ```
 
+```javascript
+// sort -
+// sort()
+// sort(compareFn)
+
+// The default sort order is ascending (remember that (a, b) => a - b sorts numbers in ascending order).
+// parameter can be: sort(compareFn): A function that determines the order of the elements. The function is called with the (a,b) arguments
+// It should return a number where:
+// A negative value indicates that `a` should come before `b`.
+// A positive value indicates that `a` should come after `b`.
+
+const stringArray = ["Blue", "Humpback", "Beluga"];
+const numberArray = [40, 1, 5, 200];
+const numericStringArray = ["80", "9", "700"];
+const mixedNumericArray = ["80", "9", "700", 40, 1, 5, 200];
+
+function compareNumbers(a, b) {
+  return a - b;
+}
+
+stringArray.join(); // 'Blue,Humpback,Beluga'
+stringArray.sort(); // ['Beluga', 'Blue', 'Humpback']
+
+numberArray.join(); // '40,1,5,200'
+numberArray.sort(); // [1, 200, 40, 5]
+numberArray.sort(compareNumbers); // [1, 5, 40, 200]
+
+numericStringArray.join(); // '80,9,700'
+numericStringArray.sort(); // ['700', '80', '9']
+numericStringArray.sort(compareNumbers); // ['9', '80', '700']
+
+mixedNumericArray.join(); // '80,9,700,40,1,5,200'
+mixedNumericArray.sort(); // [1, 200, 40, 5, '700', '80', '9']
+mixedNumericArray.sort(compareNumbers); // [1, 5, '9', 40, '80', 200, '700']
+```
+
+
+```javascript
+// join -
+// join()
+// join(separator)
+const elements = ['Fire', 'Air', 'Water'];
+
+console.log(elements.join());
+// Expected output: "Fire,Air,Water"
+
+console.log(elements.join(''));
+// Expected output: "FireAirWater"
+
+console.log(elements.join('-'));
+// Expected output: "Fire-Air-Water"
+```
+
+
+```javascript
+// map() -
+// Creates a new array populated with the results of calling a provided function on every element in the calling array.
+// map(callbackFn)
+// map(callbackFn, thisArg)
+
+const array1 = [1, 4, 9, 16];
+
+// Pass a function to map
+const map1 = array1.map((x) => x * 2);
+
+console.log(map1);
+// Expected output: Array [2, 8, 18, 32]
+```
+
+
+
+```javascript
+// slice -
+// slice() 
+// slice(start)
+// slice(start, end)
+
+const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+
+console.log(animals.slice(2));
+// Expected output: Array ["camel", "duck", "elephant"]
+
+console.log(animals.slice(2, 4));
+// Expected output: Array ["camel", "duck"]
+
+console.log(animals.slice(1, 5));
+// Expected output: Array ["bison", "camel", "duck", "elephant"]
+
+console.log(animals.slice(-2));
+// Expected output: Array ["duck", "elephant"]
+
+console.log(animals.slice(2, -1));
+// Expected output: Array ["camel", "duck"]
+
+console.log(animals.slice());
+// Expected output: Array ["ant", "bison", "camel", "duck", "elephant"]
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ---
+<br>
 
 
-# Regular_expressions -> Character classes in javascript:
+
+
+# 🚀 Regular_expressions -> Character classes in javascript:
 
 Character classes distinguish kinds of characters such as, for example, distinguishing between letters and digits.
 
@@ -389,6 +533,12 @@ console.log(moods.match(regexpEmoticons));
        .then(response => response.json())
        .then(data => console.log(data));
      ```
+
+
+
+
+
+
 
 ---
 <br>
