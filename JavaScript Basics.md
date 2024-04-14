@@ -1,5 +1,557 @@
+# 🏆 String Methods
+  ```javascript
+   let text = '  JavaScript is awesome!  ';
 
-# JavaScript Basics:
+   // Trim whitespace
+   console.log(text.trim()); // Output: JavaScript is awesome!
+
+   // Split -
+   // split(separator)
+   // split(separator, limit)
+   // takes a pattern and divides this string into an ordered list of substrings by searching for the pattern, puts these substrings into an array.
+  // Returns an array!
+   let words = text.split(' '); 
+   console.log(words); // Output: ['JavaScript', 'is', 'awesome!']
+
+   const str = 'The quick brown fox jumps over the lazy dog.';
+   const words = str.split(' ');
+   console.log(words[3]);
+   // Expected output: "fox"
+   
+   const chars = str.split('');
+   console.log(chars[8]);
+   // Expected output: "k"
+   
+   const strCopy = str.split();
+   console.log(strCopy);
+   // Expected output: Array ["The quick brown fox jumps over the lazy dog."]
+
+
+   // Replace
+   console.log(text.replace('awesome', 'amazing')); // Output: JavaScript is amazing!
+ 
+
+  // substring -
+  // substring(indexStart)
+  // substring(indexStart, indexEnd)
+  // return a new string
+
+  const str = 'Mozilla';  
+  console.log(str.substring(1, 3));
+  // Expected output: "oz"
+  
+  console.log(str.substring(2));
+  // Expected output: "zilla"
+
+```
+
+```javascript
+// padStart -
+// The padStart() method of String values pads this string with another string until the resulting string reaches the given length. The padding is applied from the start of this string.
+// padStart(targetLength)
+// padStart(targetLength, padString)
+const str1 = '5';
+
+console.log(str1.padStart(2, '0'));
+// Expected output: "05"
+
+const fullNumber = '2034399002125581';
+const last4Digits = fullNumber.slice(-4);
+const maskedNumber = last4Digits.padStart(fullNumber.length, '*');
+
+console.log(maskedNumber);
+// Expected output: "************5581"
+
+```
+
+
+
+
+
+
+
+
+
+
+---
+
+# 🚀 Javascript arrays:
+# 🏆 arrays Methods
+```javascript
+// Array() constructor creates Array objects.
+const arrayEmpty = new Array(2);
+console.log(arrayEmpty.length); // 2
+
+const newArr = new Array(0, 0); //[0,0]
+
+// Both create a new Array instance.
+new Array()
+Array()
+
+const clothing = ['shoes', 'shirts', 'socks', 'sweaters'];
+console.log(clothing.length);
+// Expected output: 4
+
+const array1 = ['one', 'two', 'three'];
+console.log('array1:', array1);
+// Expected output: "array1:" Array ["one", "two", "three"]
+```
+
+
+```javascript
+// toString -
+const array1 = [1, 2, 'a', '1a'];
+console.log(array1.toString());
+// Expected output: "1,2,a,1a"
+```
+
+
+```javascript
+// join -
+// return - A string with all array elements joined. If array.length is 0, the empty string is returned.
+// join()
+// join(separator)
+const elements = ['Fire', 'Air', 'Water'];
+
+console.log(elements.join());
+// Expected output: "Fire,Air,Water"
+
+console.log(elements.join(''));
+// Expected output: "FireAirWater"
+
+console.log(elements.join('-'));
+// Expected output: "Fire-Air-Water"
+```
+
+
+```javascript
+// reverse -
+// reverse()
+const reversed = array1.reverse();
+console.log('reversed:', reversed);
+// Expected output: "reversed:" Array ["three", "two", "one"]
+
+// Careful: reverse is destructive -- it changes the original array.
+console.log('array1:', array1);
+// Expected output: "array1:" Array ["three", "two", "one"]
+```
+
+
+
+
+```javascript
+// sort -
+// sort()
+// sort(compareFn)
+
+// The default sort order is ascending (remember that (a, b) => a - b sorts numbers in ascending order).
+// parameter can be: sort(compareFn): A function that determines the order of the elements. The function is called with the (a,b) arguments
+// It should return a number where:
+// A negative value indicates that `a` should come before `b`.
+// A positive value indicates that `a` should come after `b`.
+
+const stringArray = ["Blue", "Humpback", "Beluga"];
+const numberArray = [40, 1, 5, 200];
+const numericStringArray = ["80", "9", "700"];
+const mixedNumericArray = ["80", "9", "700", 40, 1, 5, 200];
+
+function compareNumbers(a, b) {
+  return a - b;
+}
+
+stringArray.join(); // 'Blue,Humpback,Beluga'
+stringArray.sort(); // ['Beluga', 'Blue', 'Humpback']
+
+numberArray.join(); // '40,1,5,200'
+numberArray.sort(); // [1, 200, 40, 5]
+numberArray.sort(compareNumbers); // [1, 5, 40, 200]
+
+numericStringArray.join(); // '80,9,700'
+numericStringArray.sort(); // ['700', '80', '9']
+numericStringArray.sort(compareNumbers); // ['9', '80', '700']
+
+mixedNumericArray.join(); // '80,9,700,40,1,5,200'
+mixedNumericArray.sort(); // [1, 200, 40, 5, '700', '80', '9']
+mixedNumericArray.sort(compareNumbers); // [1, 5, '9', 40, '80', 200, '700']
+
+```
+
+
+
+
+```javascript
+// map() -
+// Creates a new array populated with the results of calling a provided function on every element in the calling array.
+// map(callbackFn)
+// map(callbackFn, thisArg)
+
+const array1 = [1, 4, 9, 16];
+
+// Pass a function to map
+const map1 = array1.map((x) => x * 2);
+
+console.log(map1);
+// Expected output: Array [2, 8, 18, 32]
+```
+
+
+
+```javascript
+// slice -
+// slice() 
+// slice(start)
+// slice(start, end)
+
+const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+
+console.log(animals.slice(2));
+// Expected output: Array ["camel", "duck", "elephant"]
+
+console.log(animals.slice(2, 4));
+// Expected output: Array ["camel", "duck"]
+
+console.log(animals.slice(1, 5));
+// Expected output: Array ["bison", "camel", "duck", "elephant"]
+
+console.log(animals.slice(-2));
+// Expected output: Array ["duck", "elephant"]
+
+console.log(animals.slice(2, -1));
+// Expected output: Array ["camel", "duck"]
+
+console.log(animals.slice());
+// Expected output: Array ["ant", "bison", "camel", "duck", "elephant"]
+```
+
+
+```javascript
+// reduce -
+// reduce(callbackFn)
+// reduce(callbackFn, initialValue)
+// return - The value that results from running the "reducer" callback function to completion over the entire array.
+// Executes a user-supplied "reducer" callback function on each element of the array.
+// The final result of running the reducer across all elements of the array is a single value.
+
+const array1 = [1, 2, 3, 4];
+
+// 0 + 1 + 2 + 3 + 4
+const initialValue = 0;
+const sumWithInitial = array1.reduce(
+  (accumulator, currentValue) => accumulator + currentValue,    // callbackFn
+  initialValue,                                                 // initialValue
+);
+
+console.log(sumWithInitial);
+// Expected output: 10
+```
+
+
+
+
+
+
+```javascript
+// concat -
+// return A new Array instance.
+// concat()
+// concat(value1)
+// concat(value1, value2)
+// concat(value1, value2, /* …, */ valueN) // this parameter represent Arrays and/or values to concatenate into a new array.
+
+  const str1 = 'Hello';
+  const str2 = 'World';
+  console.log(str1.concat(' ', str2)); // "Hello World"
+  console.log(str2.concat(', ', str1)); // "World, Hello"
+
+  // another concat example
+  const greetList = ["Hello", " ", "Venkat", "!"];
+  // The concat() method is called on an empty string "". This method is used to concatenate one or more strings together.  
+  // The spread operator ... effectively spreads the elements of the greetList array as individual arguments to the concat() method.
+  // So, effectively, `concat(...greetList)` is equivalent to `concat("Hello", " ", "Venkat", "!")`.
+  "".concat(...greetList); // "Hello Venkat!"    // concat() is called on an empty string ""
+  
+
+
+  const greetList = ["Hello", " ", "Venkat", "!"];
+  "".concat(...greetList); // "Hello Venkat!"
+
+  // concat() method is called on an empty string "" to combine 2 strings together
+
+  // `The spread operator ...` spreads the elements of the greetList array as individual arguments. 
+  // `...greetList` // "Hello", " ", "Venkat", "!"
+   
+  // `concat(...greetList)` is equivalent to `concat("Hello", " ", "Venkat", "!")`.
+  // When concat() is called with these arguments, it concatenates them together into a single string.
+```
+
+
+
+
+```javascript
+// filter -
+// creates a shallow copy of a portion of a given array,
+// filtered down to just the elements from the given array,
+// that pass the test implemented by the provided function.
+// filter(callbackFn)
+// filter(callbackFn, thisArg)
+
+const words = ['spray', 'elite', 'exuberant', 'destruction', 'present'];
+
+const result = words.filter((word) => word.length > 6);
+
+console.log(result);
+// Expected output: Array ["exuberant", "destruction", "present"]
+````
+
+
+
+```javascript
+// includes -
+// The includes() method of Array instances determines whether an array includes a certain value among its entries,
+// returning true or false.
+// includes(searchElement)
+// includes(searchElement, fromIndex)
+const array1 = [1, 2, 3];
+
+console.log(array1.includes(2));
+// Expected output: true
+
+const pets = ['cat', 'dog', 'bat'];
+
+console.log(pets.includes('cat'));
+// Expected output: true
+
+console.log(pets.includes('at'));
+// Expected output: false
+```
+
+
+```javascript
+// every -
+// Tests whether all elements in the array pass the test implemented by the provided function.
+// It returns a Boolean value.
+// every(callbackFn)
+// every(callbackFn, thisArg)
+
+const isBelowThreshold = (currentValue) => currentValue < 40;
+
+const array1 = [1, 30, 39, 29, 10, 13];
+
+console.log(array1.every(isBelowThreshold));
+// Expected output: true
+```
+
+
+
+```javascript
+// some -
+// some(callbackFn)
+// some(callbackFn, thisArg)
+// tests whether at least one element in the array passes the test implemented by the provided function.
+// It returns true if, in the array, it finds an element for which the provided function returns true; // otherwise it returns false. It doesn't modify the array.
+const array = [1, 2, 3, 4, 5];
+// Checks whether an element is even
+const even = (element) => element % 2 === 0;
+
+console.log(array.some(even));
+// Expected output: true
+```
+
+
+
+
+```javascript
+// indexOf -
+// returns the first index at which a given element can be found in the array, or -1 if it is not present.
+// indexOf(searchElement)
+// indexOf(searchElement, fromIndex)
+const beasts = ['ant', 'bison', 'camel', 'duck', 'bison'];
+
+console.log(beasts.indexOf('bison'));
+// Expected output: 1
+
+// Start from index 2
+console.log(beasts.indexOf('bison', 2));
+// Expected output: 4
+
+console.log(beasts.indexOf('giraffe'));
+// Expected output: -1
+```
+
+
+### Example:
+```javascript
+// This function removes duplicates by checking if the current index of an item is the same as the first // occurrence of that item. If they match, it means the item is unique, and it's kept in the filtered array.
+function removeDuplicates(arr) {
+    return arr.filter((item, index) => arr.indexOf(item) === index);
+}
+```
+Let's say we have an array `arr = [1, 2, 2, 3, 4, 4, 5]`.
+
+1. For the first occurrence of `2`, `arr.indexOf(2)` returns `1`, and its current index (`index`) is also `1`. So, we keep `2`.
+
+2. For the second occurrence of `2`, `arr.indexOf(2)` still returns `1`, but its current index (`index`) is `2`. So, we filter it out.
+
+3. Similarly, for `4`, we keep only the first occurrence.
+
+
+
+
+
+
+
+
+
+
+---
+<br>
+
+
+
+# 🚀 Number in javascript:
+```javascript
+function financial(x) {
+  return Number.parseFloat(x).toFixed(2);
+}
+
+console.log(financial(123.456));
+// Expected output: "123.46"
+
+console.log(financial(0.004));
+// Expected output: "0.00"
+
+console.log(financial('1.23e+5'));
+// Expected output: "123000.00"
+```
+
+
+---
+<br>
+
+
+
+
+
+# 🚀 Map in javascript:
+The Map object holds key-value pairs and remembers the original insertion order of the keys.
+Any value (both objects and primitive values) may be used as either a key or a value.
+
+```javascript
+const map1 = new Map();
+
+map1.set('a', 1);
+map1.set('b', 2);
+map1.set('c', 3);
+
+console.log(map1.get('a'));
+// Expected output: 1
+
+map1.set('a', 97);
+
+console.log(map1.get('a'));
+// Expected output: 97
+
+console.log(map1.size);
+// Expected output: 3
+
+map1.delete('b');
+
+console.log(map1.size);
+// Expected output: 2
+```
+
+
+#### Creating a new Map
+```javascript
+const myMap = new Map([
+  [1, "one"],
+  [2, "two"],
+  [3, "three"],
+]);
+```
+
+Methods include: clear, delete, entries, forEach, get, has, groupBy, keys, set, values.
+
+
+
+
+---
+<br>
+
+
+# 🚀 Set in javascript:
+The Set object lets you store unique values of any type, whether primitive values or object references.
+
+```javascript
+const a = new Set([1, 2, 3]);
+const b = new Map([
+  [1, "one"],
+  [2, "two"],
+  [4, "four"],
+]);
+console.log(a.union(b)); // Set(4) {1, 2, 3, 4}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+<br>
+
+
+
+
+# 🚀 Regular_expressions -> Character classes in javascript:
+
+Character classes distinguish kinds of characters such as, for example, distinguishing between letters and digits.
+
+```javascript
+const chessStory = 'He played the King in a8 and she moved her Queen in c2.';
+const regexpCoordinates = /\w\d/g;
+console.log(chessStory.match(regexpCoordinates));
+// Expected output: Array [ 'a8', 'c2']
+
+const moods = 'happy 🙂, confused 😕, sad 😢';
+const regexpEmoticons = /[\u{1F600}-\u{1F64F}]/gu;
+console.log(moods.match(regexpEmoticons));
+// Expected output: Array ['🙂', '😕', '😢']
+```
+
+```javascript
+  for (let char of str) {
+  //checks if it is an alphabet (either lowercase or uppercase) using a regular expression 
+   char.match(/[a-zA-Z]/)  
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+---
+<br>
+
+
+# 🏆 JavaScript Basics:
+
+
 ```javascript
 document.querySelector("html").addEventListener("click", function () {
   alert("Ouch! Stop poking me!");
@@ -7,7 +559,265 @@ document.querySelector("html").addEventListener("click", function () {
 ```
 
 
-### JavaScript objects
+## JavaScript Objects:
+In JavaScript, objects are a fundamental data type that allow you to store collections of `key-value` pairs. Each key in an object must be unique, and each key is associated with a value. Objects in JavaScript can hold `any type of values, including numbers, strings, arrays, or even other objects`.
+
+### Object Properties and Methods
+
+Objects in JavaScript can have properties and methods:
+
+- **Properties**: These are variables that are attached to the object. They hold data values.
+  
+  ```javascript
+  const person = {
+      firstName: "John",
+      lastName: "Doe",
+      age: 30
+  };
+  ```
+
+- **Methods**: These are functions that are attached to the object. They can perform actions on the object's data.
+
+  ```javascript
+  const person = {
+      firstName: "John",
+      lastName: "Doe",
+      fullName: function() {
+          return this.firstName + " " + this.lastName;
+      }
+  };
+  
+  console.log(person.fullName());  // Outputs: "John Doe"
+  ```
+
+### Object Constructor
+
+You can also create objects using a constructor function and the `new` keyword:
+
+```javascript
+function Person(firstName, lastName, age) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+}
+
+const john = new Person("John", "Doe", 30);
+```
+
+### Object Prototypes
+
+JavaScript is prototype-based. Each object has a prototype, and the prototype itself is also an object. You can add properties and methods to an object's prototype to be shared across all instances of the object.
+
+```javascript
+Person.prototype.fullName = function() {
+    return this.firstName + " " + this.lastName;
+};
+```
+
+### Object Destructuring
+
+Destructuring assignment allows you to extract values from arrays or properties from objects and assign them to variables in a more concise way.
+##### Object Destructuring:
+In the context of objects, you can destructure properties from an object and assign them to variables with the same names as the properties.
+
+Here we using destructuring assignment to extract specific properties from the person object and assign them to variables `firstName` and `lastName`.
+
+```javascript
+const person = {
+    firstName: "John",
+    lastName: "Doe",
+    age: 30
+};
+
+const { firstName, lastName } = person;
+console.log(firstName);  // Outputs: "John"
+console.log(lastName);   // Outputs: "Doe"
+```
+The destructuring assignment here does the following:
+- firstName: It extracts the value of `firstName` property from the `person` object and assigns it to a variable named `firstName`.
+- lastName: It extracts the value of `lastName` property from the `person` object and assigns it to a variable named `lastName`.
+- After executing you'll have two new variables. This is a convenient way to quickly access and use specific properties from an object without having to access them through the object's name every time.
+
+
+
+###  Access the properties of an object without restructuring:
+
+### `.`:
+
+You can access object properties using the dot notation by directly referencing the property names after the object name:
+
+```javascript
+const person = {
+    firstName: "John",
+    lastName: "Doe",
+    age: 30
+};
+
+console.log(person.firstName);  // Outputs: "John"
+console.log(person.lastName);   // Outputs: "Doe"
+```
+
+### `[]`:
+
+Alternatively, you can use bracket notation by passing the property name `as a string` inside square brackets:
+
+```javascript
+const person = {
+    firstName: "John",
+    lastName: "Doe",
+    age: 30
+};
+
+console.log(person['firstName']);  // Outputs: "John"
+console.log(person['lastName']);   // Outputs: "Doe"
+```
+
+### Using Variables for Property Names
+
+If you want to access object properties using variables, you can use bracket notation:
+
+```javascript
+const person = {
+    firstName: "John",
+    lastName: "Doe",
+    age: 30
+};
+
+const propertyName = "firstName";
+console.log(person[propertyName]);  // Outputs: "John"
+```
+
+### Direct Access with Variables
+
+If you have the property values stored in variables, you can also access object properties directly using those variables:
+
+```javascript
+const person = {
+    firstName: "John",
+    lastName: "Doe",
+    age: 30
+};
+
+const firstName = "firstName";
+const lastName = "lastName";
+
+console.log(person[firstName]);  // Outputs: "John"
+console.log(person[lastName]);   // Outputs: "Doe"
+```
+
+
+### Object Spread and Rest
+
+The spread operator (`...`) can be used to create a new object by copying properties from an existing object:
+
+```javascript
+const person = {
+    firstName: "John",
+    lastName: "Doe",
+    age: 30
+};
+
+const newPerson = { ...person, age: 40 };
+```
+
+The rest operator (`...`) can also be used to gather remaining properties into a new object:
+
+```javascript
+const { firstName, ...rest } = person;
+console.log(rest);  // Outputs: { lastName: "Doe", age: 30 }
+```
+
+### Object Serialization and Deserialization
+
+JavaScript objects can be serialized into JSON strings and parsed back into objects:
+
+```javascript
+const person = {
+    firstName: "John",
+    lastName: "Doe",
+    age: 30
+};
+
+const jsonStr = JSON.stringify(person);  // Serialize object to JSON string
+const obj = JSON.parse(jsonStr);         // Parse JSON string back to object
+```
+
+### `Object.keys()`, `Object.values()`, `Object.entries()`
+
+These methods provide ways to access the keys, values, and entries of an object respectively:
+
+```javascript
+const person = {
+    firstName: "John",
+    lastName: "Doe",
+    age: 30
+};
+
+console.log(Object.keys(person));    // Outputs: ["firstName", "lastName", "age"]
+console.log(Object.values(person));  // Outputs: ["John", "Doe", 30]
+console.log(Object.entries(person)); // Outputs: [["firstName", "John"], ["lastName", "Doe"], ["age", 30]]
+```
+
+
+
+
+
+### Count Characters
+```javascript
+function countCharacters(str) {
+    const charCount = {};
+    
+    for (let char of str) {
+        charCount[char] = (charCount[char] || 0) + 1;
+    }
+    
+    return charCount;
+}
+```
+### `const charCount = {};`
+
+The line `const charCount = {};` declares a constant variable named `charCount` and initializes it as an `empty object`. This empty object can later be populated with `key-value pairs`, where the `keys are characters` from the string and the `values are the counts` of those characters.
+
+### `charCount[char] = (charCount[char] || 0) + 1;`
+- `charCount[char]`: This accesses the value associated with the key `char` in the `charCount` object. If the key `char` does not exist in `charCount`, it returns `undefined`.
+
+- `(charCount[char] || 0)`: This is a way to ensure that if `charCount[char]` is `undefined` (or falsy), it defaults to `0`. This prevents `NaN` (Not a Number) from being added to the count.
+
+- `(charCount[char] || 0) + 1`: This increments the count of the character `char` by 1.
+
+- `charCount[char] = (charCount[char] || 0) + 1;`: This assigns the incremented count back to the key `char` in the `charCount` object.
+
+### Example:
+
+Let's say we have the string `"hello"` and we want to count the occurrences of each character using the `countCharacters` function:
+
+1. For the first character `'h'`:
+   - `charCount['h']` is `undefined`, so `(charCount['h'] || 0)` evaluates to `0`.
+   - `charCount['h'] = 0 + 1` assigns `1` to `charCount['h']`.
+
+2. For the second character `'e'`:
+   - `charCount['e']` is `undefined`, so `(charCount['e'] || 0)` evaluates to `0`.
+   - `charCount['e'] = 0 + 1` assigns `1` to `charCount['e']`.
+
+3. For the third character `'l'`:
+   - `charCount['l']` is `undefined`, so `(charCount['l'] || 0)` evaluates to `0`.
+   - `charCount['l'] = 0 + 1` assigns `1` to `charCount['l']`.
+
+...and so on for each character in the string.
+
+By the end, `charCount` will look something like this:
+```javascript
+{
+  h: 1,
+  e: 1,
+  l: 2,
+  o: 1
+}
+```
+
+
+
+
 ```javascript
 const person = {};
 
@@ -42,6 +852,19 @@ const person = {
 
 Strings are a fundamental data type in JavaScript used to represent text. They are sequences of characters enclosed within single quotes (`'`) or double quotes (`"`). 
 Strings are a versatile and essential part of JavaScript, used extensively in web development for tasks such as user input validation, dynamic content generation, and manipulation of text-based data. Understanding string manipulation techniques is crucial for writing efficient and readable JavaScript code.
+
+
+#### String constructor and String function - 
+String function and String constructor produce different results:
+```javascript
+const a = new String("Hello world"); // a === "Hello world" is false
+const b = String("Hello world"); // b === "Hello world" is true
+a instanceof String; // is true
+b instanceof String; // is false
+typeof a; // "object"
+typeof b; // "string"
+```      
+
 
 1. **String Declaration**: Strings can be declared using single quotes, double quotes, or backticks (template literals). 
    ```javascript
@@ -78,6 +901,17 @@ Strings are a versatile and essential part of JavaScript, used extensively in we
 5. **String Immutability**: Strings in JavaScript are immutable, meaning their values cannot be changed after creation. However, you can create new strings based on existing ones using string methods or concatenation.
 
 6. **Escape Characters**: JavaScript supports escape characters to represent special characters within strings. Some common escape characters include `\n` (newline), `\t` (tab), `\\` (backslash), `\"` (double quote), and `\'` (single quote).
+
+
+7. 🎯 **Destructuring assignment**:
+ ```javascript
+// takes a string representing a time in the format 'HH:MM:SSAM', removes the AM/PM indicator, splits the remaining string into hours, minutes, and seconds, converts each part to a number, and assigns them to the respective variables hours, minutes, and seconds.
+let s = '07:05:45PM';
+let [hours, minutes, seconds] = s.slice(0, -2).split(':').map(Number);  
+// Destructuring assignment allows you to extract data from arrays or objects and assign it to variables in a single expression
+ ```     
+
+
 
 
 ## String usages and manipulations in JavaScript:
@@ -117,78 +951,8 @@ Strings are a versatile and essential part of JavaScript, used extensively in we
    console.log(message); // Output: Hello, my name is Alice and I am 30 years old.
    ```
 
-   
 
-3. **String Manipulation Methods**:
-  ```javascript
-   let text = '  JavaScript is awesome!  ';
-
-   // Trim whitespace
-   console.log(text.trim()); // Output: JavaScript is awesome!
-
-   // Replace
-   console.log(text.replace('awesome', 'amazing')); // Output: JavaScript is amazing!
-
-   // Split
-   // takes a pattern and divides this string into an ordered list of substrings by searching for the pattern, puts these substrings into an array, and returns the array.
-   let words = text.split(' '); 
-   console.log(words); // Output: ['JavaScript', 'is', 'awesome!']
-
-   const str = 'The quick brown fox jumps over the lazy dog.';
-   const words = str.split(' ');
-   console.log(words[3]);
-   // Expected output: "fox"
-   
-   const chars = str.split('');
-   console.log(chars[8]);
-   // Expected output: "k"
-   
-   const strCopy = str.split();
-   console.log(strCopy);
-   // Expected output: Array ["The quick brown fox jumps over the lazy dog."]
-
-   // join
-   // join() method of Array instances creates and returns a new string by concatenating all of the elements in this array, separated by commas or a specified separator string.
-   const elements = ['Fire', 'Air', 'Water'];
-   console.log(elements.join());
-   // Expected output: "Fire,Air,Water"
-   
-   console.log(elements.join(''));
-   // Expected output: "FireAirWater"
-   
-   console.log(elements.join('-'));
-   // Expected output: "Fire-Air-Water"
-
-   // concat  
-  const str1 = 'Hello';
-  const str2 = 'World';
-  console.log(str1.concat(' ', str2)); // "Hello World"
-  console.log(str2.concat(', ', str1)); // "World, Hello"
-
-  // another concat example
-  const greetList = ["Hello", " ", "Venkat", "!"];
-  // The concat() method is called on an empty string "". This method is used to concatenate one or more strings together.  
-  // The spread operator ... effectively spreads the elements of the greetList array as individual arguments to the concat() method.
-  // So, effectively, `concat(...greetList)` is equivalent to `concat("Hello", " ", "Venkat", "!")`.
-  "".concat(...greetList); // "Hello Venkat!"    // concat() is called on an empty string ""
   
-
-
-  const greetList = ["Hello", " ", "Venkat", "!"];
-  "".concat(...greetList); // "Hello Venkat!"
-
-  // concat() method is called on an empty string "" to combine 2 strings together
-
-  // `The spread operator ...` spreads the elements of the greetList array as individual arguments. 
-  // `...greetList` // "Hello", " ", "Venkat", "!"
-   
-  // `concat(...greetList)` is equivalent to `concat("Hello", " ", "Venkat", "!")`.
-  // When concat() is called with these arguments, it concatenates them together into a single string.
- 
-  ```
-  
-
-
 
 5. **Checking for Substrings:**
    ```javascript
@@ -249,7 +1013,7 @@ Strings are a versatile and essential part of JavaScript, used extensively in we
 
 
 10. **Common way to convert non-string values into strings**
-
+```javascript
 function splitIntoDigits(a) {
     const string = a + '';  // Convert to string (This method effectively converts the number a into a string)
     const strings = string.split(''); // Split into individual characters
@@ -259,136 +1023,10 @@ function splitIntoDigits(a) {
    // Number: This is a callback function passed to Array.from which specifies how each element of the resulting array should be processed. Here, it's converting each character in the string back into a number. When Array.from iterates over       // each character in the string, it applies the Number function to convert it into a number. For example, '1', '2', and '3' will be converted to 1, 2, and 3 respectively.
     return Array.from(String(a), Number);   
 }
-
-
-
-
-
-
-
-# 🚀 Javascript arrays:
-
-```javascript
-const array1 = ['one', 'two', 'three'];
-console.log('array1:', array1);
-// Expected output: "array1:" Array ["one", "two", "three"]
-
-// reverse -
-// reverse()
-const reversed = array1.reverse();
-console.log('reversed:', reversed);
-// Expected output: "reversed:" Array ["three", "two", "one"]
-
-// Careful: reverse is destructive -- it changes the original array.
-console.log('array1:', array1);
-// Expected output: "array1:" Array ["three", "two", "one"]
-```
-
-```javascript
-// sort -
-// sort()
-// sort(compareFn)
-
-// The default sort order is ascending (remember that (a, b) => a - b sorts numbers in ascending order).
-// parameter can be: sort(compareFn): A function that determines the order of the elements. The function is called with the (a,b) arguments
-// It should return a number where:
-// A negative value indicates that `a` should come before `b`.
-// A positive value indicates that `a` should come after `b`.
-
-const stringArray = ["Blue", "Humpback", "Beluga"];
-const numberArray = [40, 1, 5, 200];
-const numericStringArray = ["80", "9", "700"];
-const mixedNumericArray = ["80", "9", "700", 40, 1, 5, 200];
-
-function compareNumbers(a, b) {
-  return a - b;
-}
-
-stringArray.join(); // 'Blue,Humpback,Beluga'
-stringArray.sort(); // ['Beluga', 'Blue', 'Humpback']
-
-numberArray.join(); // '40,1,5,200'
-numberArray.sort(); // [1, 200, 40, 5]
-numberArray.sort(compareNumbers); // [1, 5, 40, 200]
-
-numericStringArray.join(); // '80,9,700'
-numericStringArray.sort(); // ['700', '80', '9']
-numericStringArray.sort(compareNumbers); // ['9', '80', '700']
-
-mixedNumericArray.join(); // '80,9,700,40,1,5,200'
-mixedNumericArray.sort(); // [1, 200, 40, 5, '700', '80', '9']
-mixedNumericArray.sort(compareNumbers); // [1, 5, '9', 40, '80', 200, '700']
 ```
 
 
-```javascript
-// join -
-// join()
-// join(separator)
-const elements = ['Fire', 'Air', 'Water'];
-
-console.log(elements.join());
-// Expected output: "Fire,Air,Water"
-
-console.log(elements.join(''));
-// Expected output: "FireAirWater"
-
-console.log(elements.join('-'));
-// Expected output: "Fire-Air-Water"
-```
-
-
-```javascript
-// map() -
-// Creates a new array populated with the results of calling a provided function on every element in the calling array.
-// map(callbackFn)
-// map(callbackFn, thisArg)
-
-const array1 = [1, 4, 9, 16];
-
-// Pass a function to map
-const map1 = array1.map((x) => x * 2);
-
-console.log(map1);
-// Expected output: Array [2, 8, 18, 32]
-```
-
-
-
-```javascript
-// slice -
-// slice() 
-// slice(start)
-// slice(start, end)
-
-const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
-
-console.log(animals.slice(2));
-// Expected output: Array ["camel", "duck", "elephant"]
-
-console.log(animals.slice(2, 4));
-// Expected output: Array ["camel", "duck"]
-
-console.log(animals.slice(1, 5));
-// Expected output: Array ["bison", "camel", "duck", "elephant"]
-
-console.log(animals.slice(-2));
-// Expected output: Array ["duck", "elephant"]
-
-console.log(animals.slice(2, -1));
-// Expected output: Array ["camel", "duck"]
-
-console.log(animals.slice());
-// Expected output: Array ["ant", "bison", "camel", "duck", "elephant"]
-```
-
-
-
-
-
-
-
-
+ 
 
 
 
@@ -399,42 +1037,6 @@ console.log(animals.slice());
 
 ---
 <br>
-
-
-
-
-# 🚀 Regular_expressions -> Character classes in javascript:
-
-Character classes distinguish kinds of characters such as, for example, distinguishing between letters and digits.
-
-```javascript
-const chessStory = 'He played the King in a8 and she moved her Queen in c2.';
-const regexpCoordinates = /\w\d/g;
-console.log(chessStory.match(regexpCoordinates));
-// Expected output: Array [ 'a8', 'c2']
-
-const moods = 'happy 🙂, confused 😕, sad 😢';
-const regexpEmoticons = /[\u{1F600}-\u{1F64F}]/gu;
-console.log(moods.match(regexpEmoticons));
-// Expected output: Array ['🙂', '😕', '😢']
-```
-
-```javascript
-  for (let char of str) {
-  //checks if it is an alphabet (either lowercase or uppercase) using a regular expression 
-   char.match(/[a-zA-Z]/)  
-}
-```
-
-
-
-
-
-
-
-
----
-
 
 
 1. **JavaScript Basics**:
@@ -537,239 +1139,295 @@ console.log(moods.match(regexpEmoticons));
 
 
 
-
-
-
 ---
 <br>
 
 
-# 🏆 Javascript Practice:
+# שאלות פיתוח באקאנד - 
 
-// https://www.jschallenger.com/javascript-practice/
+## API Design and Asynchronous Programming:
+
+### API Design
+
+#### Question 1: 
+Design an API endpoint to create a new user with `name`, `email`, and `password` fields. Ensure that the email is unique and the password is hashed before saving to the database.
+
+#### Solution:
 
 ```javascript
-// There's another way to create functions which is called function expression.
-// Here, we create a function and assign it to the variable logMessage.
-// Notice that we omit the name of the function after the function keyword.
-function logMessageOne() {
-    console.log('How are you?');
-  }
-   
-  const logMessageTwo = function() {
-    console.log('Great, thanks!');
-  }   
-  logMessageOne();   
-  logMessageTwo();
+const bcrypt = require('bcrypt');
+const users = [];  // Simulated database
 
+app.post('/users', async (req, res) => {
+    const { name, email, password } = req.body;
 
+    // Check if email already exists
+    if (users.some(user => user.email === email)) {
+        return res.status(400).json({ error: 'Email already exists' });
+    }
 
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-// Write a function that takes a string (a) and a number (n) as argument.
-// Return the nth character of 'a'.
-function myFunction(a, n){
-    return a.charAt(n - 1);
-}
-console.log(myFunction('abcd',1));
+    // Create new user
+    const newUser = {
+        id: users.length + 1,
+        name,
+        email,
+        password: hashedPassword,
+        createdAt: new Date()
+    };
 
+    // Save user to database (in this example, we're just pushing to an array)
+    users.push(newUser);
 
+    res.status(201).json(newUser);
+});
+```
 
-// Write a function that takes a string (a) as argument.
-// Remove the first 3 characters of a. Return the result
-function myFunction(a){
-    return a.slice(3);
-}
-console.log(myFunction('1234'));
+#### Question 2:
+Design an API endpoint to update a user's `name` and `email` by `userId`.
 
+#### Solution:
 
+```javascript
+app.put('/users/:userId', (req, res) => {
+    const userId = parseInt(req.params.userId);
+    const { name, email } = req.body;
 
-// Write a function that takes a string as argument. Extract the last 3 characters from the string. Return the result
-function myFunction(a) {
-    return a.slice(-3);
-}
-console.log(myFunction('abcdefgh')); // Output: 'fgh'
+    const userIndex = users.findIndex(user => user.id === userId);
 
+    if (userIndex === -1) {
+        return res.status(404).json({ error: 'User not found' });
+    }
 
+    // Update user details
+    users[userIndex].name = name;
+    users[userIndex].email = email;
 
-// Write a function that takes a string (a) as argument. Get the first 3 characters of a. Return the result
-function myFunction(a) {
-    return a.slice(0, 3);
-}
-console.log(myFunction('abcdefgh')); // Output: 'abc'
+    res.json(users[userIndex]);
+});
+```
 
+### Asynchronous Programming
 
+#### Question 1:
+Write a function to fetch data from two different APIs (`api1` and `api2`) asynchronously and combine the results into a single object.
 
-// Write a function that takes a string as argument. The string contains the substring 'is'. Return the index of 'is'.
-function findIndexOfIs(a) {
-    return a.indexOf('is');
-}
-console.log(findIndexOfIs('This is a sample string.')); // Output: 2
+#### Solution:
 
+```javascript
+const axios = require('axios');
 
-// Write a function that extract the first half a. 
-function extractFirstHalf(a) {
-    const halfLength = Math.ceil(a.length / 2); //rounds a number up
-    return a.slice(0, halfLength);
-}
+async function fetchDataFromApis() {
+    try {
+        const [data1, data2] = await Promise.all([
+            axios.get('https://api1.example.com/data'),
+            axios.get('https://api2.example.com/data')
+        ]);
 
-console.log(extractFirstHalf('abcdefgh')); // Output: 'abcd'
-
-
-
-// Remove the last 3 characters of a. Return the result.
-function removeLastThreeCharacters(a) {
-    return a.slice(0, -3);
-}
-console.log(removeLastThreeCharacters('abcdefgh')); // Output: 'abc'
-
-
-
-// Return b percent of a
-function percentage(a, b) {
-    return (b / 100) * a;
-}
-console.log(percentage(100, 50)); // Output: 50
-
-
-
-// Sum a and b. Then substract by c. Then multiply by d and divide by e.
-// Finally raise to the power of f and return the result.
-function complexCalculation(a, b, c, d, e, f) {
-    let result = a + b;
-    result -= c;
-    result *= d;
-    result /= e;
-    result = Math.pow(result, f);     // Raise to the power of f
-    return result;
-
-   // return (((a + b - c) * d) / e) ** f;
-}
-const a = 5, b = 10, c = 3, d = 2, e = 4, f = 2;
-const result = complexCalculation(a, b, c, d, e, f);
-console.log(result);
-
-
-
-
-// If a contains b, append b to the beginning of a.
-// If not, append it to the end.
-function appendBasedOnContainment(a, b) {
-    if (a.includes(b)) {
-        return b + a;  // Append b to the beginning of a
-    } else {
-        return a + b;  // Append b to the end of a
+        return {
+            api1Data: data1.data,
+            api2Data: data2.data
+        };
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
     }
 }
-const x = 'hello', y = 'world';
-const result2 = appendBasedOnContainment(x, y);
-console.log(result);
+```
 
+#### Question 2:
+Write a function to fetch data from an API (`api1`) asynchronously. If the response contains a `nextPage` URL, fetch the next page recursively until all pages are fetched and combined into a single array.
 
+#### Solution:
 
+```javascript
+const axios = require('axios');
 
-//  If the number is even, return true. Otherwise, return false
-function isEven(n) {
-    return n % 2 === 0;
+async function fetchAllPages(url) {
+    try {
+        let allData = [];
+        let nextPage = url;
+
+        while (nextPage) {
+            const response = await axios.get(nextPage);
+            allData = [...allData, ...response.data.results];
+            nextPage = response.data.nextPage;  // Assume nextPage is a URL or null
+        }
+
+        return allData;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
 }
-console.log(isEven(10));
+```
 
 
 
 
 
-// Return the number of times a occurs in b.
-function countOccurrences(a, b) {
-    // a regular expression with the 'g' flag is used to find all occurrences of a in b. 
-    const regex = new RegExp(a, 'g');
-    const matches = b.match(regex);
-
-    // Return the count of occurrences
-    return matches ? matches.length : 0;
-}
-const w = 'ab', z = 'abababcab';
-const occurrences = countOccurrences(w,z);
-console.log(occurrences);  // Output: 4
-
-/*
-Regular expressions:
-1. Literal Characters:
-   - Regular expressions can match literal characters. For example, `/hello/` will match the word "hello" in a text.
-
-2. Metacharacters:
-   - `.` (dot): Matches any single character. `/a.b/` will match "aab", "axb", etc.
-   - `*`: Matches 0 or more occurrences of the preceding character. `/ab*c/` will match "ac", "abc", "abbc", etc.
-   - `+`: Matches 1 or more occurrences of the preceding character. `/ab+c/` will match "abc", "abbc", "abbbc", etc.
-   - `?`: Matches 0 or 1 occurrence of the preceding character. `/ab?c/` will match "ac" and "abc".
-   - `^`: Anchors the regex at the beginning of the string. `/^abc/` will match "abc" only if it's at the beginning.
-   - `$`: Anchors the regex at the end of the string. `/abc$/` will match "abc" only if it's at the end.
-
-3. Character Classes:
-   - Square brackets `[ ]` define a character class. `/[aeiou]/` will match any vowel.
-   - Ranges can be used. `/[0-9]/` will match any digit.
-
-4. Quantifiers:
-   - Specify the number of occurrences. `/a{2,4}/` matches 2 to 4 consecutive 'a' characters.
-
-5. Groups:
-   - Parentheses `( )` create groups. `/(\d{3})-\d{3}-\d{4}/` matches a phone number pattern like "555-123-4567" and captures the area code (the digits within the parentheses).
-
-6. Escape Character:
-   - The backslash `\` is used to match a literal metacharacter. `/a\*b/` matches "a*b".
 
 
-Now, let's revisit the examples with simpler explanations:
-const text = 'The quick brown fox jumps over the lazy dog';
+More Backend-related questions:
 
-// Example 1: Matching the word 'quick'
-const wordRegex = /quick/;
-console.log(text.match(wordRegex));  // Output: [ 'quick' ]
+### 1. API Design
 
-// Example 2: Matching any digit
-const digitRegex = /\d/;
-console.log(text.match(digitRegex));  // Output: null (no digit found)
+**Question**: 
+Design an API endpoint to retrieve a list of users with their details. Each user should have an `id`, `name`, `email`, and `createdAt` timestamp.
 
-// Example 3: Matching words starting with 'b'
-const startsWithBRegex = /\bb\w+/g;
-console.log(text.match(startsWithBRegex));  // Output: [ 'brown' ]
+```javascript
+// Express.js route to retrieve list of users
+app.get('/users', (req, res) => {
+    const users = [
+        { id: 1, name: 'John', email: 'john@example.com', createdAt: new Date() },
+        // ... other users
+    ];
+    res.json(users);
+});
+```
 
-// Example 4: Matching a phone number pattern and capturing the area code
-const phoneRegex = /(\d{3})-\d{3}-\d{4}/;
-const phoneNumber = '555-123-4567';
-console.log(phoneNumber.match(phoneRegex));  // Output: [ '555-123-4567', '555' ]
-*/
+### 2. Database Query
 
+**Question**: 
+Write a SQL query to retrieve all orders placed by a specific user with the `userId` of 5 from an `orders` table.
 
+```javascript
+SELECT * FROM orders WHERE userId = 5;
+```
 
+### 3. Error Handling
 
-//If a is a whole number (has no decimal place), return true. Otherwise, return false.
-function isWholeNumber(a) {
-    return Number.isInteger(a);
-    // return a - Math.floor(a) === 0
-}
-console.log(isWholeNumber(5));     // Output: true
-console.log(isWholeNumber(7.42));  // Output: false
+**Question**: 
+Implement error handling for a RESTful API endpoint that fetches user details by `userId`. Handle cases where the user doesn't exist or the database query fails.
+```javascript
+app.get('/user/:userId', (req, res) => {
+    const userId = req.params.userId;
+    const user = getUserById(userId);
+    
+    if (!user) {
+        res.status(404).json({ error: 'User not found' });
+        return;
+    }
+    
+    res.json(user);
+});
+```
 
+### 4. Authentication
 
+**Question**: 
+Implement JWT (JSON Web Token) authentication for an API endpoint. Create a function to generate a token when a user logs in and verify the token when accessing protected routes.
 
+```javascript
+const jwt = require('jsonwebtoken');
 
-// Write a function that takes two numbers (a and b) as arguments.
-// If a is smaller than b, divide a by b. Otherwise, multiply both numbers. Return the resulting value
-function dividedOrMultiply(a,b){
-   return a < b ? a/b : a*b;
+// Generate JWT token
+function generateToken(user) {
+    return jwt.sign({ userId: user.id }, 'secretKey', { expiresIn: '1h' });
 }
 
-
-
-//Round a to the 2nd digit after the decimal point. 
-function roundToTwoDecimalPlaces(a) {
-    return Math.round(a * 100) / 100;
+// Verify JWT token
+function verifyToken(token) {
+    return jwt.verify(token, 'secretKey');
 }
+```
 
-//Split a into its individual digits and return them in an array.
-function splitIntoDigits(a) {
-    const string = a + '';  // Convert to string (This method effectively converts the number a into a string)
-    const strings = string.split(''); // Split into individual characters
-    return strings.map(digit => Number(digit))    // Convert each character back to a number
-    // return Array.from(String(a), Number);
+### 5. Data Validation
+
+**Question**: 
+Write a function to validate the format of an email address before saving it to the database. Ensure it follows the standard email format (`username@example.com`).
+
+```javascript
+function validateEmail(email) {
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return regex.test(email);
+}
+```
+
+### 6. Caching
+
+**Question**: 
+Implement caching to improve the performance of an API endpoint that retrieves product details. Cache the results for 5 minutes and invalidate the cache when a product is updated.
+
+```javascript
+const NodeCache = require('node-cache');
+const cache = new NodeCache({ stdTTL: 300 });
+
+app.get('/products', async (req, res) => {
+    let products = cache.get('products');
+    
+    if (!products) {
+        products = await fetchProductsFromDatabase();
+        cache.set('products', products);
+    }
+    
+    res.json(products);
+});
+```
+
+### 7. Rate Limiting
+
+**Question**: 
+Implement rate limiting for an API endpoint to allow only 100 requests per hour per user. Return an error message if the limit is exceeded.
+
+```javascript
+const rateLimit = require('express-rate-limit');
+
+const limiter = rateLimit({
+    windowMs: 60 * 60 * 1000, // 1 hour
+    max: 100
+});
+
+app.use('/api/', limiter);
+
+app.get('/api/data', (req, res) => {
+    res.json({ message: 'Data fetched successfully' });
+});
+```
+
+### 8. Asynchronous Programming
+
+**Question**: 
+Write a function to fetch data from an external API asynchronously using promises or async/await and handle any errors that may occur during the fetch operation.
+
+```javascript
+const axios = require('axios');
+
+async function fetchData() {
+    try {
+        const response = await axios.get('https://api.example.com/data');
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}
+```
+
+### 9. Middleware
+
+**Question**: 
+Create a middleware function to log the request method, URL, and timestamp for every incoming request to an Express.js server.
+
+```javascript
+app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+    next();
+});
+```
+
+### 10. Data Transformation
+
+**Question**: 
+Write a function to transform the data retrieved from the database into a specific format required by the frontend. For example, convert date strings to JavaScript `Date` objects.
+
+```javascript
+function transformData(data) {
+    return data.map(item => ({
+        ...item,
+        createdAt: new Date(item.createdAt)
+    }));
 }
 ```
