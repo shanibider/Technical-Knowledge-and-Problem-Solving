@@ -1,3 +1,7 @@
+# 🏆 ידע טכני:
+
+  
+
 # 🏆 String Methods
   ```javascript
    let text = '  JavaScript is awesome!  ';
@@ -8,23 +12,20 @@
    // Split -
    // split(separator)
    // split(separator, limit)
-   // takes a pattern and divides this string into an ordered list of substrings by searching for the pattern, puts these substrings into an array.
-  // Returns an array!
+   // takes a pattern and divides this string into an ordered list of substrings by searching for the pattern,
+ // puts these substrings into an array. Returns an array!
    let words = text.split(' '); 
    console.log(words); // Output: ['JavaScript', 'is', 'awesome!']
 
    const str = 'The quick brown fox jumps over the lazy dog.';
    const words = str.split(' ');
-   console.log(words[3]);
-   // Expected output: "fox"
+   console.log(words[3]);  // "fox"
    
    const chars = str.split('');
-   console.log(chars[8]);
-   // Expected output: "k"
+   console.log(chars[8]);  // "k"
    
    const strCopy = str.split();
-   console.log(strCopy);
-   // Expected output: Array ["The quick brown fox jumps over the lazy dog."]
+   console.log(strCopy);   //Array ["The quick brown fox jumps over the lazy dog."]
 
 
    // Replace
@@ -35,38 +36,28 @@
   // substring(indexStart)
   // substring(indexStart, indexEnd)
   // return a new string
-
   const str = 'Mozilla';  
-  console.log(str.substring(1, 3));
-  // Expected output: "oz"
+  console.log(str.substring(1, 3));   // "oz"
   
-  console.log(str.substring(2));
-  // Expected output: "zilla"
+  console.log(str.substring(2));  // "zilla"
 
-```
 
-```javascript
+
 // padStart -
-// The padStart() method of String values pads this string with another string until the resulting string reaches the given length. The padding is applied from the start of this string.
+// Pads this string with another string until the resulting string reaches the given length.
+// The padding is applied from the start of this string.
 // padStart(targetLength)
 // padStart(targetLength, padString)
 const str1 = '5';
 
-console.log(str1.padStart(2, '0'));
-// Expected output: "05"
+console.log(str1.padStart(2, '0'));  // "05"
 
 const fullNumber = '2034399002125581';
 const last4Digits = fullNumber.slice(-4);
 const maskedNumber = last4Digits.padStart(fullNumber.length, '*');
 
-console.log(maskedNumber);
-// Expected output: "************5581"
-
+console.log(maskedNumber);  // "************5581"
 ```
-
-
-
-
 
 
 
@@ -74,78 +65,123 @@ console.log(maskedNumber);
 
 
 ---
-
-# 🚀 Javascript arrays:
-# 🏆 arrays Methods
+# 🏆 Arrays Methods
 ```javascript
-// Array() constructor creates Array objects.
-const arrayEmpty = new Array(2);
-console.log(arrayEmpty.length); // 2
+// Creating an array -
+const arr1 = new Array(element0, element1, /* …, */ elementN);
+const arr2 = Array(element0, element1, /* …, */ elementN);
+const arr3 = [element0, element1, /* …, */ elementN];
 
-const newArr = new Array(0, 0); //[0,0]
+// To create an array with non-zero length, but without any items, either of the following can be used:
+// This...
+const arr1 = new Array(arrayLength);
 
-// Both create a new Array instance.
-new Array()
-Array()
+// ...results in the same array as this
+const arr2 = Array(arrayLength);
 
-const clothing = ['shoes', 'shirts', 'socks', 'sweaters'];
-console.log(clothing.length);
-// Expected output: 4
+// This has exactly the same effect
+const arr3 = [];
+arr3.length = arrayLength;
 
-const array1 = ['one', 'two', 'three'];
-console.log('array1:', array1);
-// Expected output: "array1:" Array ["one", "two", "three"]
+// In addition to a newly defined variable as shown above, arrays can also be assigned as a property of a new or an existing object:
+const obj = {};
+// …
+obj.prop = [element0, element1, /* …, */ elementN];
+
+// OR
+const obj = { prop: [element0, element1, /* …, */ elementN] };
+
+
+// If you wish to initialize an array with a single element,
+// and the element happens to be a Number, you must use the bracket syntax.
+// When a single Number value is passed to the Array() constructor or function,
+// it is interpreted as an arrayLength, not as a single element.
+const arr = [42];       // creates an array with only one element: the number 42.
+const arr = Array(42);  // This creates an array with no elements and arr.length set to 42.
+// This is equivalent to:
+const arr = [];
+arr.length = 42;
 ```
 
 
 ```javascript
 // toString -
 const array1 = [1, 2, 'a', '1a'];
-console.log(array1.toString());
-// Expected output: "1,2,a,1a"
-```
+console.log(array1.toString());  // "1,2,a,1a"
 
 
-```javascript
 // join -
-// return - A string with all array elements joined. If array.length is 0, the empty string is returned.
+// joins all elements of an array into a string. If array.length is 0, the empty string is returned.
 // join()
 // join(separator)
 const elements = ['Fire', 'Air', 'Water'];
 
-console.log(elements.join());
-// Expected output: "Fire,Air,Water"
-
-console.log(elements.join(''));
-// Expected output: "FireAirWater"
-
-console.log(elements.join('-'));
-// Expected output: "Fire-Air-Water"
-```
+console.log(elements.join());  // "Fire,Air,Water"
+console.log(elements.join(''));  // "FireAirWater"
+console.log(elements.join('-'));  // "Fire-Air-Water"
 
 
-```javascript
+// push -
+// Adds one or more elements to the end of an array and returns the resulting length of the array.
+const myArray = ["1", "2"];
+myArray.push("3"); // myArray is now ["1", "2", "3"]
+
+
+// pop -
+// Removes the last element from an array and returns that element.
+const myArray = ["1", "2", "3"];
+const last = myArray.pop();
+// myArray is now ["1", "2"], last = "3"
+
+// shift -
+// Removes the first element from an array and returns that element.
+const myArray = ["1", "2", "3"];
+const first = myArray.shift();
+// myArray is now ["2", "3"], first is "1"
+
+
+// unshift -
+// Adds one or more elements to the front of an array and returns the new length of the array.
+const myArray = ["1", "2", "3"];
+myArray.unshift("4", "5");
+// myArray becomes ["4", "5", "1", "2", "3"]
+
+
+// slice -
+// slice() 
+// slice(start)
+// slice(start, end)
+// extracts a section of an array and returns a new array.
+const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+console.log(animals.slice(2));       // Array ["camel", "duck", "elephant"]
+console.log(animals.slice(2, 4));    // Array ["camel", "duck"] // starts at index 2 and extracts all elements until index 4
+console.log(animals.slice(1, 5));    // Array ["bison", "camel", "duck", "elephant"]
+console.log(animals.slice(-2));      // Array ["duck", "elephant"]
+console.log(animals.slice(2, -1));   // Array ["camel", "duck"]
+console.log(animals.slice());       // Array ["ant", "bison", "camel", "duck", "elephant"]
+
+// at -
+// Returns the element at the specified index in the array, or undefined if the index is out of range.
+// It's notably used for negative indices that access elements from the end of the array.
+const myArray = ["a", "b", "c", "d", "e"];
+myArray.at(-2); // "d", the second-last element of myArray
+
+
 // reverse -
 // reverse()
 const reversed = array1.reverse();
-console.log('reversed:', reversed);
-// Expected output: "reversed:" Array ["three", "two", "one"]
+console.log('reversed:', reversed);  // "reversed:" Array ["three", "two", "one"]
 
 // Careful: reverse is destructive -- it changes the original array.
-console.log('array1:', array1);
-// Expected output: "array1:" Array ["three", "two", "one"]
-```
+console.log('array1:', array1);  // "array1:" Array ["three", "two", "one"]
 
 
-
-
-```javascript
 // sort -
 // sort()
 // sort(compareFn)
-
-// The default sort order is ascending (remember that (a, b) => a - b sorts numbers in ascending order).
-// parameter can be: sort(compareFn): A function that determines the order of the elements. The function is called with the (a,b) arguments
+// The default sort order is ascending
+// ((a, b) => a - b) sorts numbers in ascending order.
+// parameter 'compareFn' can be a function that determines the order of the elements. The function is called with the (a,b) arguments.
 // It should return a number where:
 // A negative value indicates that `a` should come before `b`.
 // A positive value indicates that `a` should come after `b`.
@@ -174,89 +210,45 @@ mixedNumericArray.join(); // '80,9,700,40,1,5,200'
 mixedNumericArray.sort(); // [1, 200, 40, 5, '700', '80', '9']
 mixedNumericArray.sort(compareNumbers); // [1, 5, '9', 40, '80', 200, '700']
 
-```
 
 
-
-
-```javascript
+// map -
 // map() -
-// Creates a new array populated with the results of calling a provided function on every element in the calling array.
+// Returns a new array of the return value from executing callback on every array item.
 // map(callbackFn)
 // map(callbackFn, thisArg)
 
 const array1 = [1, 4, 9, 16];
-
 // Pass a function to map
 const map1 = array1.map((x) => x * 2);
-
-console.log(map1);
-// Expected output: Array [2, 8, 18, 32]
-```
+console.log(map1);  // Array [2, 8, 18, 32]
 
 
 
-```javascript
-// slice -
-// slice() 
-// slice(start)
-// slice(start, end)
-
-const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
-
-console.log(animals.slice(2));
-// Expected output: Array ["camel", "duck", "elephant"]
-
-console.log(animals.slice(2, 4));
-// Expected output: Array ["camel", "duck"]
-
-console.log(animals.slice(1, 5));
-// Expected output: Array ["bison", "camel", "duck", "elephant"]
-
-console.log(animals.slice(-2));
-// Expected output: Array ["duck", "elephant"]
-
-console.log(animals.slice(2, -1));
-// Expected output: Array ["camel", "duck"]
-
-console.log(animals.slice());
-// Expected output: Array ["ant", "bison", "camel", "duck", "elephant"]
-```
-
-
-```javascript
 // reduce -
 // reduce(callbackFn)
 // reduce(callbackFn, initialValue)
-// return - The value that results from running the "reducer" callback function to completion over the entire array.
+// Return the value that results from running the "reducer" callback function to completion over the entire array.
 // Executes a user-supplied "reducer" callback function on each element of the array.
 // The final result of running the reducer across all elements of the array is a single value.
 
 const array1 = [1, 2, 3, 4];
-
 // 0 + 1 + 2 + 3 + 4
 const initialValue = 0;
 const sumWithInitial = array1.reduce(
   (accumulator, currentValue) => accumulator + currentValue,    // callbackFn
   initialValue,                                                 // initialValue
 );
-
-console.log(sumWithInitial);
-// Expected output: 10
-```
+console.log(sumWithInitial);  // 10
 
 
 
-
-
-
-```javascript
 // concat -
-// return A new Array instance.
 // concat()
 // concat(value1)
 // concat(value1, value2)
 // concat(value1, value2, /* …, */ valueN) // this parameter represent Arrays and/or values to concatenate into a new array.
+// joins two or more arrays and returns a new array.
 
   const str1 = 'Hello';
   const str2 = 'World';
@@ -265,137 +257,166 @@ console.log(sumWithInitial);
 
   // another concat example
   const greetList = ["Hello", " ", "Venkat", "!"];
-  // The concat() method is called on an empty string "". This method is used to concatenate one or more strings together.  
-  // The spread operator ... effectively spreads the elements of the greetList array as individual arguments to the concat() method.
-  // So, effectively, `concat(...greetList)` is equivalent to `concat("Hello", " ", "Venkat", "!")`.
-  "".concat(...greetList); // "Hello Venkat!"    // concat() is called on an empty string ""
-  
-
-
-  const greetList = ["Hello", " ", "Venkat", "!"];
   "".concat(...greetList); // "Hello Venkat!"
 
-  // concat() method is called on an empty string "" to combine 2 strings together
-
-  // `The spread operator ...` spreads the elements of the greetList array as individual arguments. 
-  // `...greetList` // "Hello", " ", "Venkat", "!"
-   
-  // `concat(...greetList)` is equivalent to `concat("Hello", " ", "Venkat", "!")`.
-  // When concat() is called with these arguments, it concatenates them together into a single string.
-```
+  // concat is called on an empty string "" -> This method is used to combine one or more strings together.  
+  // The spread operator ... effectively spreads the elements of the greetList array as individual arguments to the concat() method.
+  // So, effectively, `concat(...greetList)` is equivalent to `concat("Hello", " ", "Venkat", "!")`.
+  // When concat() is called with these arguments, it combine them together into a single string.
 
 
 
 
-```javascript
+
 // filter -
-// creates a shallow copy of a portion of a given array,
-// filtered down to just the elements from the given array,
-// that pass the test implemented by the provided function.
 // filter(callbackFn)
 // filter(callbackFn, thisArg)
+//  returns a new array containing the items for which callback returned true.
 
-const words = ['spray', 'elite', 'exuberant', 'destruction', 'present'];
-
-const result = words.filter((word) => word.length > 6);
-
-console.log(result);
-// Expected output: Array ["exuberant", "destruction", "present"]
-````
+const a1 = ["a", 10, "b", 20, "c", 30];
+const a2 = a1.filter((item) => typeof item === "number");
+console.log(a2); // [10, 20, 30]
 
 
 
-```javascript
+
 // includes -
-// The includes() method of Array instances determines whether an array includes a certain value among its entries,
-// returning true or false.
 // includes(searchElement)
 // includes(searchElement, fromIndex)
+// The includes() method of Array instances determines whether an array includes a certain value among its entries,
+// returning true or false.
+
 const array1 = [1, 2, 3];
 
-console.log(array1.includes(2));
-// Expected output: true
-
+console.log(array1.includes(2)); // true
 const pets = ['cat', 'dog', 'bat'];
-
-console.log(pets.includes('cat'));
-// Expected output: true
-
-console.log(pets.includes('at'));
-// Expected output: false
-```
+console.log(pets.includes('cat')); // true
+console.log(pets.includes('at')); // false
 
 
-```javascript
 // every -
-// Tests whether all elements in the array pass the test implemented by the provided function.
-// It returns a Boolean value.
 // every(callbackFn)
 // every(callbackFn, thisArg)
+// Tests whether all elements in the array pass the test implemented by the provided function.
+// Returns Boolean.
 
 const isBelowThreshold = (currentValue) => currentValue < 40;
 
 const array1 = [1, 30, 39, 29, 10, 13];
-
-console.log(array1.every(isBelowThreshold));
-// Expected output: true
-```
+console.log(array1.every(isBelowThreshold)); // true
 
 
 
-```javascript
 // some -
 // some(callbackFn)
 // some(callbackFn, thisArg)
-// tests whether at least one element in the array passes the test implemented by the provided function.
-// It returns true if, in the array, it finds an element for which the provided function returns true; // otherwise it returns false. It doesn't modify the array.
+// Tests whether at least *one element* in the array passes the test implemented by the provided function.
+// Returns Boolean. It doesn't modify the array.
+
 const array = [1, 2, 3, 4, 5];
 // Checks whether an element is even
 const even = (element) => element % 2 === 0;
-
-console.log(array.some(even));
-// Expected output: true
-```
+console.log(array.some(even)); // true
 
 
 
-
-```javascript
 // indexOf -
-// returns the first index at which a given element can be found in the array, or -1 if it is not present.
 // indexOf(searchElement)
 // indexOf(searchElement, fromIndex)
+// Returns the *first index* at which a given element can be found in the array, or -1 if it is not present.
+
 const beasts = ['ant', 'bison', 'camel', 'duck', 'bison'];
 
-console.log(beasts.indexOf('bison'));
-// Expected output: 1
+console.log(beasts.indexOf('bison')); // 1
+console.log(beasts.indexOf('bison', 2)); // Start from index 2    // 4
+console.log(beasts.indexOf('giraffe')); // -1
 
-// Start from index 2
-console.log(beasts.indexOf('bison', 2));
-// Expected output: 4
-
-console.log(beasts.indexOf('giraffe'));
-// Expected output: -1
-```
-
-
-### Example:
-```javascript
-// This function removes duplicates by checking if the current index of an item is the same as the first // occurrence of that item. If they match, it means the item is unique, and it's kept in the filtered array.
+#### Example:
+// Removes duplicates by checking if the current index of an item is the same as the first
+// occurrence of that item. If they match, it means the item is unique, and it's kept in the filtered array.
 function removeDuplicates(arr) {
     return arr.filter((item, index) => arr.indexOf(item) === index);
 }
-```
-Let's say we have an array `arr = [1, 2, 2, 3, 4, 4, 5]`.
-
+`arr = [1, 2, 2, 3, 4, 4, 5]`.
 1. For the first occurrence of `2`, `arr.indexOf(2)` returns `1`, and its current index (`index`) is also `1`. So, we keep `2`.
-
 2. For the second occurrence of `2`, `arr.indexOf(2)` still returns `1`, but its current index (`index`) is `2`. So, we filter it out.
-
 3. Similarly, for `4`, we keep only the first occurrence.
 
 
+// lastIndexOf -
+// works like indexOf, but starts at the end and searches backwards.
+const a = ["a", "b", "c", "d", "a", "b"];
+console.log(a.lastIndexOf("b")); // 5
 
+// Now try again, starting from before the last match
+console.log(a.lastIndexOf("b", 4)); // 1
+console.log(a.lastIndexOf("z")); // -1
+
+
+// forEach -
+// Executes callback on every array item and returns undefined.
+const a = ["a", "b", "c"];
+a.forEach((element) => {
+  console.log(element);
+});
+// Logs:
+// a
+// b
+// c
+
+
+
+// find -
+// Returns the first item for which callback returned true.
+
+const a1 = ["a", 10, "b", 20, "c", 30];
+const i = a1.find((item) => typeof item === "number");
+console.log(i); // 10
+
+
+// findLast -
+// Returns the last item for which callback returned true.
+
+const a1 = ["a", 10, "b", 20, "c", 30];
+const i = a1.findLast((item) => typeof item === "number");
+console.log(i); // 30
+
+
+// findIndex -
+// Returns the index of the first item for which callback returned true.
+
+const a1 = ["a", 10, "b", 20, "c", 30];
+const i = a1.findIndex((item) => typeof item === "number");
+console.log(i); // 1
+
+// findLastIndex - returns the index of the last item for which callback returned true.
+
+
+
+```
+
+
+
+
+
+
+### Multi-dimensional arrays
+```javascript
+const a = new Array(4);
+for (let i = 0; i < 4; i++) {
+  a[i] = new Array(4);
+  for (let j = 0; j < 4; j++) {
+    a[i][j] = `[${i}, ${j}]`;
+  }
+}
+
+/*
+Row 0: [0, 0] [0, 1] [0, 2] [0, 3]
+Row 1: [1, 0] [1, 1] [1, 2] [1, 3]
+Row 2: [2, 0] [2, 1] [2, 2] [2, 3]
+Row 3: [3, 0] [3, 1] [3, 2] [3, 3]
+*/
+```
 
 
 
@@ -405,7 +426,6 @@ Let's say we have an array `arr = [1, 2, 2, 3, 4, 4, 5]`.
 
 ---
 <br>
-
 
 
 # 🚀 Number in javascript:
