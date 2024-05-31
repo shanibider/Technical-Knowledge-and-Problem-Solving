@@ -1,36 +1,63 @@
-# 🏆 ידע טכני:
+# 🎯 ידע טכני:
 
-  
-
-# 🏆 String Methods
+ # 🏆 String Methods
   ```javascript
+   // Trim whitespace -
    let text = '  JavaScript is awesome!  ';
-
-   // Trim whitespace
    console.log(text.trim()); // Output: JavaScript is awesome!
 
-   // Split -
-   // split(separator)
-   // split(separator, limit)
-   // takes a pattern and divides this string into an ordered list of substrings by searching for the pattern,
+  // Split -
+  // split(separator)
+  // split(separator, limit)
+  // takes a pattern and divides this string into an ordered list of substrings by searching for the pattern,
  // puts these substrings into an array. Returns an array!
    let words = text.split(' '); 
    console.log(words); // Output: ['JavaScript', 'is', 'awesome!']
-
    const str = 'The quick brown fox jumps over the lazy dog.';
    const words = str.split(' ');
-   console.log(words[3]);  // "fox"
-   
+   console.log(words[3]);  // "fox"   
    const chars = str.split('');
-   console.log(chars[8]);  // "k"
-   
+   console.log(chars[8]);  // "k"   
    const strCopy = str.split();
    console.log(strCopy);   //Array ["The quick brown fox jumps over the lazy dog."]
 
 
-   // Replace
-   console.log(text.replace('awesome', 'amazing')); // Output: JavaScript is amazing!
- 
+// match -
+// retrieves the result of matching this string against a regular expression.
+const paragraph = 'The quick brown fox jumps over the lazy dog. It barked.';
+const regex = /[A-Z]/g;
+const found = paragraph.match(regex);
+console.log(found);
+// Expected output: Array ["T", "I"]
+
+
+// search -
+// Executes a search for a match between a regular expression and this string,
+// returning the index of the first match in the string.
+const paragraph = "I think Ruth's dog is cuter than your dog!";
+// Anything not a word character, whitespace or apostrophe
+const regex = /[^\w\s']/g;
+console.log(paragraph.search(regex));
+// Expected output: 41
+console.log(paragraph[paragraph.search(regex)]);
+// Expected output: "!"
+
+
+// replace -
+// Returns a new string with one, some, or all matches of a pattern replaced by a replacement. 
+const paragraph = "I think Ruth's dog is cuter than your dog!";
+console.log(paragraph.replace("Ruth's", 'my'));
+// Expected output: "I think my dog is cuter than your dog!"
+const regex = /Dog/i;
+console.log(paragraph.replace(regex, 'ferret'));
+// Expected output: "I think Ruth's ferret is cuter than your dog!"
+
+
+// includes -
+// includes(searchString)
+// includes(searchString, position)
+// Performs a case-sensitive search to determine whether a given string may be found within this string,
+// returning true or false as appropriate.
 
   // substring -
   // substring(indexStart)
@@ -38,9 +65,7 @@
   // return a new string
   const str = 'Mozilla';  
   console.log(str.substring(1, 3));   // "oz"
-  
   console.log(str.substring(2));  // "zilla"
-
 
 
 // padStart -
@@ -55,18 +80,28 @@ console.log(str1.padStart(2, '0'));  // "05"
 const fullNumber = '2034399002125581';
 const last4Digits = fullNumber.slice(-4);
 const maskedNumber = last4Digits.padStart(fullNumber.length, '*');
-
 console.log(maskedNumber);  // "************5581"
 ```
 
 
 
-
-
-
 ---
+
 # 🏆 Arrays Methods
+Important JS Array Functions:
+- [x] find()
+- [x] findIndex() 
+- [x] filter() 
+- [x] reduce() 
+- [x] concat()  
+- [x] slice()  
+- [x] splice()
+- [ ] join()
+
 ```javascript
+const n = nums.length;
+const output = new Array(n).fill(1);
+ 
 // Creating an array -
 const arr1 = new Array(element0, element1, /* …, */ elementN);
 const arr2 = Array(element0, element1, /* …, */ elementN);
@@ -265,6 +300,16 @@ console.log(sumWithInitial);  // 10
   // When concat() is called with these arguments, it combine them together into a single string.
 
 
+// fill -
+// fill(value)
+// fill(value, start)
+// fill(value, start, end)
+const array1 = [1, 2, 3, 4];
+// Fill with 0 from position 2 until position 4
+console.log(array1.fill(0, 2, 4)); // Expected output: Array [1, 2, 0, 0]
+// Fill with 5 from position 1
+console.log(array1.fill(5, 1)); // Expected output: Array [1, 5, 5, 5]
+console.log(array1.fill(6)); // Expected output: Array [6, 6, 6, 6]
 
 
 
@@ -428,6 +473,10 @@ Row 3: [3, 0] [3, 1] [3, 2] [3, 3]
 <br>
 
 
+
+
+
+
 # 🚀 Number in javascript:
 ```javascript
 function financial(x) {
@@ -532,10 +581,19 @@ console.log(a.union(b)); // Set(4) {1, 2, 3, 4}
 
 
 # 🚀 Regular_expressions -> Character classes in javascript:
-
-Character classes distinguish kinds of characters such as, for example, distinguishing between letters and digits.
-
 ```javascript
+// XOR assignment (^=) operator performs bitwise XOR on the two operands
+// and assigns the result to the left operand.
+
+let a = 5; // 00000000000000000000000000000101
+a ^= 3; // 00000000000000000000000000000011
+console.log(a); // 00000000000000000000000000000110  //6
+
+
+
+
+// Character classes distinguish kinds of characters such as, for example, distinguishing between letters and digits.
+
 const chessStory = 'He played the King in a8 and she moved her Queen in c2.';
 const regexpCoordinates = /\w\d/g;
 console.log(chessStory.match(regexpCoordinates));
@@ -1156,298 +1214,3 @@ function splitIntoDigits(a) {
        .then(data => console.log(data));
      ```
 
-
-
-
----
-<br>
-
-
-# שאלות פיתוח באקאנד - 
-
-## API Design and Asynchronous Programming:
-
-### API Design
-
-#### Question 1: 
-Design an API endpoint to create a new user with `name`, `email`, and `password` fields. Ensure that the email is unique and the password is hashed before saving to the database.
-
-#### Solution:
-
-```javascript
-const bcrypt = require('bcrypt');
-const users = [];  // Simulated database
-
-app.post('/users', async (req, res) => {
-    const { name, email, password } = req.body;
-
-    // Check if email already exists
-    if (users.some(user => user.email === email)) {
-        return res.status(400).json({ error: 'Email already exists' });
-    }
-
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Create new user
-    const newUser = {
-        id: users.length + 1,
-        name,
-        email,
-        password: hashedPassword,
-        createdAt: new Date()
-    };
-
-    // Save user to database (in this example, we're just pushing to an array)
-    users.push(newUser);
-
-    res.status(201).json(newUser);
-});
-```
-
-#### Question 2:
-Design an API endpoint to update a user's `name` and `email` by `userId`.
-
-#### Solution:
-
-```javascript
-app.put('/users/:userId', (req, res) => {
-    const userId = parseInt(req.params.userId);
-    const { name, email } = req.body;
-
-    const userIndex = users.findIndex(user => user.id === userId);
-
-    if (userIndex === -1) {
-        return res.status(404).json({ error: 'User not found' });
-    }
-
-    // Update user details
-    users[userIndex].name = name;
-    users[userIndex].email = email;
-
-    res.json(users[userIndex]);
-});
-```
-
-### Asynchronous Programming
-
-#### Question 1:
-Write a function to fetch data from two different APIs (`api1` and `api2`) asynchronously and combine the results into a single object.
-
-#### Solution:
-
-```javascript
-const axios = require('axios');
-
-async function fetchDataFromApis() {
-    try {
-        const [data1, data2] = await Promise.all([
-            axios.get('https://api1.example.com/data'),
-            axios.get('https://api2.example.com/data')
-        ]);
-
-        return {
-            api1Data: data1.data,
-            api2Data: data2.data
-        };
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error;
-    }
-}
-```
-
-#### Question 2:
-Write a function to fetch data from an API (`api1`) asynchronously. If the response contains a `nextPage` URL, fetch the next page recursively until all pages are fetched and combined into a single array.
-
-#### Solution:
-
-```javascript
-const axios = require('axios');
-
-async function fetchAllPages(url) {
-    try {
-        let allData = [];
-        let nextPage = url;
-
-        while (nextPage) {
-            const response = await axios.get(nextPage);
-            allData = [...allData, ...response.data.results];
-            nextPage = response.data.nextPage;  // Assume nextPage is a URL or null
-        }
-
-        return allData;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error;
-    }
-}
-```
-
-
-
-
-
-
-
-More Backend-related questions:
-
-### 1. API Design
-
-**Question**: 
-Design an API endpoint to retrieve a list of users with their details. Each user should have an `id`, `name`, `email`, and `createdAt` timestamp.
-
-```javascript
-// Express.js route to retrieve list of users
-app.get('/users', (req, res) => {
-    const users = [
-        { id: 1, name: 'John', email: 'john@example.com', createdAt: new Date() },
-        // ... other users
-    ];
-    res.json(users);
-});
-```
-
-### 2. Database Query
-
-**Question**: 
-Write a SQL query to retrieve all orders placed by a specific user with the `userId` of 5 from an `orders` table.
-
-```javascript
-SELECT * FROM orders WHERE userId = 5;
-```
-
-### 3. Error Handling
-
-**Question**: 
-Implement error handling for a RESTful API endpoint that fetches user details by `userId`. Handle cases where the user doesn't exist or the database query fails.
-```javascript
-app.get('/user/:userId', (req, res) => {
-    const userId = req.params.userId;
-    const user = getUserById(userId);
-    
-    if (!user) {
-        res.status(404).json({ error: 'User not found' });
-        return;
-    }
-    
-    res.json(user);
-});
-```
-
-### 4. Authentication
-
-**Question**: 
-Implement JWT (JSON Web Token) authentication for an API endpoint. Create a function to generate a token when a user logs in and verify the token when accessing protected routes.
-
-```javascript
-const jwt = require('jsonwebtoken');
-
-// Generate JWT token
-function generateToken(user) {
-    return jwt.sign({ userId: user.id }, 'secretKey', { expiresIn: '1h' });
-}
-
-// Verify JWT token
-function verifyToken(token) {
-    return jwt.verify(token, 'secretKey');
-}
-```
-
-### 5. Data Validation
-
-**Question**: 
-Write a function to validate the format of an email address before saving it to the database. Ensure it follows the standard email format (`username@example.com`).
-
-```javascript
-function validateEmail(email) {
-    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return regex.test(email);
-}
-```
-
-### 6. Caching
-
-**Question**: 
-Implement caching to improve the performance of an API endpoint that retrieves product details. Cache the results for 5 minutes and invalidate the cache when a product is updated.
-
-```javascript
-const NodeCache = require('node-cache');
-const cache = new NodeCache({ stdTTL: 300 });
-
-app.get('/products', async (req, res) => {
-    let products = cache.get('products');
-    
-    if (!products) {
-        products = await fetchProductsFromDatabase();
-        cache.set('products', products);
-    }
-    
-    res.json(products);
-});
-```
-
-### 7. Rate Limiting
-
-**Question**: 
-Implement rate limiting for an API endpoint to allow only 100 requests per hour per user. Return an error message if the limit is exceeded.
-
-```javascript
-const rateLimit = require('express-rate-limit');
-
-const limiter = rateLimit({
-    windowMs: 60 * 60 * 1000, // 1 hour
-    max: 100
-});
-
-app.use('/api/', limiter);
-
-app.get('/api/data', (req, res) => {
-    res.json({ message: 'Data fetched successfully' });
-});
-```
-
-### 8. Asynchronous Programming
-
-**Question**: 
-Write a function to fetch data from an external API asynchronously using promises or async/await and handle any errors that may occur during the fetch operation.
-
-```javascript
-const axios = require('axios');
-
-async function fetchData() {
-    try {
-        const response = await axios.get('https://api.example.com/data');
-        return response.data;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error;
-    }
-}
-```
-
-### 9. Middleware
-
-**Question**: 
-Create a middleware function to log the request method, URL, and timestamp for every incoming request to an Express.js server.
-
-```javascript
-app.use((req, res, next) => {
-    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
-    next();
-});
-```
-
-### 10. Data Transformation
-
-**Question**: 
-Write a function to transform the data retrieved from the database into a specific format required by the frontend. For example, convert date strings to JavaScript `Date` objects.
-
-```javascript
-function transformData(data) {
-    return data.map(item => ({
-        ...item,
-        createdAt: new Date(item.createdAt)
-    }));
-}
-```
