@@ -554,12 +554,12 @@ fetch('https://api.example.com/login', {
 # 🏆 Data Structure:
 Used to organize and manipulate data efficiently, allowing for optimal storage, retrieval, and manipulation of information.
 
--[x] Arrays: Ordered collection of elements with constant-time access to individual elements.
--[x] Linked Lists: Collection of nodes where each node points to the next node in the sequence.
--[x] Stacks: LIFO (Last In, First Out) data structure (push and pop).
--[x] Queues: FIFO (First In, First Out) data structure (enqueue and dequeue).
--[x] Trees: Hierarchical data structure consisting of nodes connected by edges, with a root node at the top.
--[x] Graphs: Non-linear data structure consisting of nodes (vertices) and edges connecting them.
+- [x] Arrays: Ordered collection of elements with constant-time access to individual elements.
+- [x] Linked Lists: Collection of nodes where each node points to the next node in the sequence.
+- [x] Stacks: LIFO (Last In, First Out) data structure (push and pop).
+- [x] Queues: FIFO (First In, First Out) data structure (enqueue and dequeue).
+- [x] Trees: Hierarchical data structure consisting of nodes connected by edges, with a root node at the top.
+- [x] Graphs: Non-linear data structure consisting of nodes (vertices) and edges connecting them.
 
 
 1. **Arrays:**
@@ -914,14 +914,391 @@ In the case of the `reverseList` function, once the base case is reached (i.e., 
 In the context of reversing a linked list, backtracking involves returning from each recursive call, reversing the links between nodes, and eventually constructing the reversed list step by step.
 
 
-
+<br>
 
 ---
 <br>
 
 
 
-# Assets:
-![Binary Search](https://github.com/shanibider/Technical-interview/assets/72359805/fb298150-c380-4de8-877a-a9deb0e9c253)
 
-![Invert Binary Tree](https://github.com/shanibider/Technical-interview/assets/72359805/77478df2-93cb-4696-a127-bbca3109db0d)
+
+# 🏆 שאלות פיתוח באקאנד - 
+
+## 🎯 API Design and Asynchronous Programming:
+### API Design
+#### Question 1: 
+Design an API endpoint to create a new user with `name`, `email`, and `password` fields. Ensure that the email is unique and the password is hashed before saving to the database.
+
+#### Solution:
+```javascript
+const bcrypt = require('bcrypt');
+const users = [];  // Simulated database
+
+app.post('/users', async (req, res) => {
+    const { name, email, password } = req.body;
+
+    // Check if email already exists
+    if (users.some(user => user.email === email)) {
+        return res.status(400).json({ error: 'Email already exists' });
+    }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create new user
+    const newUser = {
+        id: users.length + 1,
+        name,
+        email,
+        password: hashedPassword,
+        createdAt: new Date()
+    };
+
+    // Save user to database (in this example, we're just pushing to an array)
+    users.push(newUser);
+
+    res.status(201).json(newUser);
+});
+```
+
+#### Question 2:
+Design an API endpoint to update a user's `name` and `email` by `userId`.
+
+#### Solution:
+```javascript
+app.put('/users/:userId', (req, res) => {
+    const userId = parseInt(req.params.userId);
+    const { name, email } = req.body;
+
+    const userIndex = users.findIndex(user => user.id === userId);
+
+    if (userIndex === -1) {
+        return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Update user details
+    users[userIndex].name = name;
+    users[userIndex].email = email;
+
+    res.json(users[userIndex]);
+});
+```
+
+### 🎯 Asynchronous Programming
+
+#### Question 1:
+Write a function to fetch data from two different APIs (`api1` and `api2`) asynchronously and combine the results into a single object.
+
+#### Solution:
+```javascript
+const axios = require('axios');
+
+async function fetchDataFromApis() {
+    try {
+        const [data1, data2] = await Promise.all([
+            axios.get('https://api1.example.com/data'),
+            axios.get('https://api2.example.com/data')
+        ]);
+
+        return {
+            api1Data: data1.data,
+            api2Data: data2.data
+        };
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}
+```
+
+#### Question 2:
+Write a function to fetch data from an API (`api1`) asynchronously. If the response contains a `nextPage` URL, fetch the next page recursively until all pages are fetched and combined into a single array.
+
+#### Solution:
+```javascript
+const axios = require('axios');
+
+async function fetchAllPages(url) {
+    try {
+        let allData = [];
+        let nextPage = url;
+
+        while (nextPage) {
+            const response = await axios.get(nextPage);
+            allData = [...allData, ...response.data.results];
+            nextPage = response.data.nextPage;  // Assume nextPage is a URL or null
+        }
+
+        return allData;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}
+```
+
+
+
+### 1. API Design
+
+**Question**: 
+Design an API endpoint to retrieve a list of users with their details. Each user should have an `id`, `name`, `email`, and `createdAt` timestamp.
+
+```javascript
+// Express.js route to retrieve list of users
+app.get('/users', (req, res) => {
+    const users = [
+        { id: 1, name: 'John', email: 'john@example.com', createdAt: new Date() },
+        // ... other users
+    ];
+    res.json(users);
+});
+```
+
+### 2. Database Query
+
+**Question**: 
+Write a SQL query to retrieve all orders placed by a specific user with the `userId` of 5 from an `orders` table.
+
+```javascript
+SELECT * FROM orders WHERE userId = 5;
+```
+
+### 3. Error Handling
+
+**Question**: 
+Implement error handling for a RESTful API endpoint that fetches user details by `userId`. Handle cases where the user doesn't exist or the database query fails.
+```javascript
+app.get('/user/:userId', (req, res) => {
+    const userId = req.params.userId;
+    const user = getUserById(userId);
+    
+    if (!user) {
+        res.status(404).json({ error: 'User not found' });
+        return;
+    }
+    
+    res.json(user);
+});
+```
+
+### 4. Authentication
+
+**Question**: 
+Implement JWT (JSON Web Token) authentication for an API endpoint. Create a function to generate a token when a user logs in and verify the token when accessing protected routes.
+
+```javascript
+const jwt = require('jsonwebtoken');
+
+// Generate JWT token
+function generateToken(user) {
+    return jwt.sign({ userId: user.id }, 'secretKey', { expiresIn: '1h' });
+}
+
+// Verify JWT token
+function verifyToken(token) {
+    return jwt.verify(token, 'secretKey');
+}
+```
+
+### 5. Data Validation
+
+**Question**: 
+Write a function to validate the format of an email address before saving it to the database. Ensure it follows the standard email format (`username@example.com`).
+
+```javascript
+function validateEmail(email) {
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return regex.test(email);
+}
+```
+
+### 6. Caching
+
+**Question**: 
+Implement caching to improve the performance of an API endpoint that retrieves product details. Cache the results for 5 minutes and invalidate the cache when a product is updated.
+
+```javascript
+const NodeCache = require('node-cache');
+const cache = new NodeCache({ stdTTL: 300 });
+
+app.get('/products', async (req, res) => {
+    let products = cache.get('products');
+    
+    if (!products) {
+        products = await fetchProductsFromDatabase();
+        cache.set('products', products);
+    }
+    
+    res.json(products);
+});
+```
+
+### 7. Rate Limiting
+
+**Question**: 
+Implement rate limiting for an API endpoint to allow only 100 requests per hour per user. Return an error message if the limit is exceeded.
+
+```javascript
+const rateLimit = require('express-rate-limit');
+
+const limiter = rateLimit({
+    windowMs: 60 * 60 * 1000, // 1 hour
+    max: 100
+});
+
+app.use('/api/', limiter);
+
+app.get('/api/data', (req, res) => {
+    res.json({ message: 'Data fetched successfully' });
+});
+```
+
+### 8. Asynchronous Programming
+
+**Question**: 
+Write a function to fetch data from an external API asynchronously using promises or async/await and handle any errors that may occur during the fetch operation.
+
+```javascript
+const axios = require('axios');
+
+async function fetchData() {
+    try {
+        const response = await axios.get('https://api.example.com/data');
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}
+```
+
+### 9. Middleware
+
+**Question**: 
+Create a middleware function to log the request method, URL, and timestamp for every incoming request to an Express.js server.
+
+```javascript
+app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+    next();
+});
+```
+
+### 10. Data Transformation
+
+**Question**: 
+Write a function to transform the data retrieved from the database into a specific format required by the frontend. For example, convert date strings to JavaScript `Date` objects.
+
+```javascript
+function transformData(data) {
+    return data.map(item => ({
+        ...item,
+        createdAt: new Date(item.createdAt)
+    }));
+}
+```
+
+
+<br>
+
+---
+<br>
+
+
+
+
+
+
+# 🏆 Common SQL queries
+1. **SELECT statement**: Basic query to retrieve data from a database table.
+   ```sql
+   SELECT column1, column2 FROM table_name;
+   ```
+
+2. **WHERE clause**: Used to filter records based on a specified condition.
+   ```sql
+   SELECT column1, column2 FROM table_name WHERE condition;
+   ```
+
+3. **ORDER BY clause**: Used to sort the result set in ascending or descending order.
+   ```sql
+   SELECT column1, column2 FROM table_name ORDER BY column1 DESC;
+   ```
+
+4. **GROUP BY clause**: Groups rows that have the same values into summary rows, like "find total sales by each product".
+   ```sql
+   SELECT column1, SUM(column2) FROM table_name GROUP BY column1;
+   ```
+
+5. **HAVING clause**: Similar to the WHERE clause, but used with aggregate functions because WHERE cannot be used with aggregate functions.
+   ```sql
+   SELECT column1, SUM(column2) FROM table_name GROUP BY column1 HAVING SUM(column2) > 1000;
+   ```
+
+6. **JOIN**: Used to combine rows from two or more tables based on a related column between them.
+   ```sql
+   SELECT table1.column1, table2.column2 FROM table1 JOIN table2 ON table1.related_column = table2.related_column;
+   ```
+
+7. **INNER JOIN**: Returns rows when there is a match in both tables.
+   ```sql
+   SELECT table1.column1, table2.column2 FROM table1 INNER JOIN table2 ON table1.related_column = table2.related_column;
+   ```
+
+8. **LEFT JOIN**: Returns all rows from the left table and matching rows from the right table.
+   ```sql
+   SELECT table1.column1, table2.column2 FROM table1 LEFT JOIN table2 ON table1.related_column = table2.related_column;
+   ```
+
+9. **RIGHT JOIN**: Returns all rows from the right table and matching rows from the left table.
+   ```sql
+   SELECT table1.column1, table2.column2 FROM table1 RIGHT JOIN table2 ON table1.related_column = table2.related_column;
+   ```
+
+10. **UNION**: Combines the result of two or more SELECT statements, removing duplicate rows.
+   ```sql
+   SELECT column1 FROM table1
+   UNION
+   SELECT column1 FROM table2;
+   ```
+
+
+# 🏆 Runtime -
+Runtime is a measure of how the time required by an algorithm grows as the size of the input grows.
+Some common complexities and what they mean:
+
+1. **O(1) - Constant Time Complexity**:
+   - The runtime of the algorithm remains constant regardless of the size of the input.
+   - Examples include `accessing a specific element` in an array or performing a `basic arithmetic operation`.
+
+2. **O(log n) - Logarithmic Time Complexity**:
+   - The runtime grows `logarithmically` as the size of the input increases.
+   - Examples include `binary search` algorithms or certain `tree operations` where the data is repeatedly divided in half.
+
+3. **O(n) - Linear Time Complexity**:
+   - The runtime increases `linearly` with the size of the input.
+   - Examples include `iterating` through an array or a list.
+
+4. **O(nlogn) - Linearithmic Time Complexity**:
+   - The runtime grows in proportion to `n times the logarithm of n`.
+   - Examples include some efficient sorting algorithms like `Merge Sort and Quick Sort`.
+
+5. **O(n^2) - Quadratic Time Complexity**:
+   - The runtime is `proportional to the square of the size of the input`.
+   - Examples include `nested loops` where every element of a collection is compared to every other element.
+
+6. **O(n^k) - Polynomial Time Complexity**:
+   - The runtime is proportional to the `input size raised to some constant power`.
+   - Examples include algorithms with `nested loops` where the `number of nested loops determines the value of k`.
+
+7. **O(2^n) - Exponential Time Complexity**:
+   - The runtime `doubles with each additional input`.
+   - Examples include exhaustive search algorithms like the brute-force solution for the `Traveling Salesman Problem`.
+
+8. **O(n!) - Factorial Time Complexity**:
+   - The runtime` grows extremely fast` as the factorial of the input size.
+   - Examples include brute-force algorithms that generate all permutations or combinations of a set.
+
+When comparing different complexities, such as O(m) and O(m*n), it's essential to consider how each component grows with the input size. In O(m), the runtime grows linearly with the size of `m`, whereas in O(m*n), it grows linearly with both `m` and `n`. So, if `m` and `n` are independent of each other, the overall complexity would be O(m * n). However, if one is much larger or smaller than the other, we may only consider the dominant term.
