@@ -913,6 +913,102 @@ In the case of the `reverseList` function, once the base case is reached (i.e., 
 
 In the context of reversing a linked list, backtracking involves returning from each recursive call, reversing the links between nodes, and eventually constructing the reversed list step by step.
 
+<br>
+
+---
+<br>
+
+
+
+
+# Dynamic Programming 🚀
+
+Dynamic Programming (DP) is a powerful method for solving complex problems by breaking them down into simpler subproblems. It is especially useful for optimization problems where the goal is to find the best solution among many possible ones.
+
+## Key Concepts 📚
+
+1. **Overlapping Subproblems** 🔄:
+   - In dynamic programming, the same subproblems are solved multiple times. Instead of solving the same subproblem repeatedly, DP solves each subproblem once and stores the result for future use.
+
+2. **Optimal Substructure** 🏗️:
+   - A problem has an optimal substructure if the optimal solution of the problem can be constructed from the optimal solutions of its subproblems.
+
+## Steps to Solve a Problem using Dynamic Programming 🛠️
+
+1. **Define the State** 🎯:
+   - Determine what variables you need to represent the state of your subproblems. This typically involves identifying the minimum set of parameters that define a subproblem.
+
+2. **State Transition** 🔄:
+   - Determine how to transition from one state to another. This involves figuring out how to solve the current subproblem using the solutions of smaller subproblems.
+
+3. **Base Case** 🧩:
+   - Identify the simplest subproblems and their solutions. These are the base cases that will be used to build up to the solution of the main problem.
+
+4. **Memoization (Top-Down) or Tabulation (Bottom-Up)** 📝:
+   - **Memoization**: Store the results of subproblems in a table (usually an array or a hash map) to avoid redundant calculations.
+   - **Tabulation**: Build a table in a bottom-up manner by solving all subproblems starting from the base cases up to the main problem.
+
+## Example: Fibonacci Sequence 🐇
+
+Let's see how DP can be applied to compute the n-th Fibonacci number.
+
+**Problem**: Find the n-th Fibonacci number where:
+\[ F(n) = F(n-1) + F(n-2) \]
+with base cases \( F(0) = 0 \) and \( F(1) = 1 \).
+
+### Steps:
+
+1. **Define the State** 🎯:
+   - Let `F(n)` be the n-th Fibonacci number.
+
+2. **State Transition** 🔄:
+   - \( F(n) = F(n-1) + F(n-2) \).
+
+3. **Base Case** 🧩:
+   - \( F(0) = 0 \), \( F(1) = 1 \).
+
+4. **Memoization** 📝:
+
+```python
+def fib(n, memo={}):
+    if n in memo:
+        return memo[n]
+    if n <= 1:
+        return n
+    memo[n] = fib(n-1, memo) + fib(n-2, memo)
+    return memo[n]
+```
+
+**Or Tabulation** 📝:
+
+```python
+def fib(n):
+    if n <= 1:
+        return n
+    dp = [0] * (n + 1)
+    dp[1] = 1
+    for i in range(2, n + 1):
+        dp[i] = dp[i-1] + dp[i-2]
+    return dp[n]
+```
+
+## Benefits of Dynamic Programming 🌟
+
+- **Efficiency** ⚡: Avoids redundant calculations by storing solutions to subproblems.
+- **Clarity** 🧼: Provides a structured way to solve problems by breaking them into smaller, manageable pieces.
+- **Optimal Solutions** 🎯: Ensures that the solution to the main problem is optimal by using the optimal solutions of subproblems.
+
+## When to Use Dynamic Programming 🕵️‍♂️
+
+- When the problem can be broken down into overlapping subproblems.
+- When the problem has an optimal substructure.
+- When you need an efficient solution to an otherwise exponential-time problem.
+
+
+
+
+
+
 
 <br>
 
@@ -923,8 +1019,7 @@ In the context of reversing a linked list, backtracking involves returning from 
 
 
 
-# 🏆 שאלות פיתוח באקאנד - 
-
+# 🏆 Backend Q&A - 
 ## 🎯 API Design and Asynchronous Programming:
 ### API Design
 #### Question 1: 
